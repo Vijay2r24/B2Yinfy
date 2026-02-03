@@ -1,87 +1,79 @@
-import { Button } from "@/components/ui/button";
 import heroBackground from "@/assets/hero-background.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBackground})` }}
       />
       
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-background/70" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-[hsl(200,15%,15%)]/75" />
 
-      {/* Vertical Established Text */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:block">
-        <span className="vertical-text text-xs tracking-[0.3em] text-muted-foreground font-light">
-          ESTABLISHED 2000
+      {/* Vertical Established Text - Left Side */}
+      <div className="absolute left-6 lg:left-10 top-1/2 -translate-y-1/2 z-20">
+        <span className="vertical-text text-[10px] tracking-[0.4em] text-foreground/50 font-light uppercase">
+          Established 2000
         </span>
       </div>
 
-      {/* Section Navigation Dots */}
-      <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3">
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((_, i) => (
-          <div
+      {/* Section Navigation Dots - Right Side */}
+      <div className="absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-2">
+        {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+          <button
             key={i}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              i === 0 ? "bg-primary w-3 h-3" : "bg-muted-foreground/40 hover:bg-primary/60"
+            className={`w-2.5 h-2.5 rounded-full transition-all ${
+              i === 0 
+                ? "bg-foreground ring-2 ring-foreground/30 ring-offset-2 ring-offset-transparent" 
+                : "bg-foreground/30 hover:bg-foreground/50"
             }`}
           />
         ))}
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 py-32 lg:py-0">
+      {/* Main Content */}
+      <div className="relative z-10 container mx-auto px-6 lg:px-24 py-32">
         <div className="max-w-4xl">
-          {/* Years Badge */}
-          <div className="flex items-baseline gap-2 mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <span className="text-6xl md:text-8xl font-bold text-primary">25</span>
-            <div className="flex flex-col">
-              <span className="text-lg text-foreground font-medium">Years</span>
-              <span className="text-sm text-muted-foreground">Experience</span>
-            </div>
-          </div>
-
           {/* Main Title */}
-          <h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight animate-fade-in"
-            style={{ animationDelay: "0.4s" }}
-          >
+          <h1 className="text-4xl md:text-5xl lg:text-[64px] font-bold text-foreground mb-8 leading-[1.1] tracking-tight">
             B2B Software Technologies Ltd
           </h1>
 
-          {/* Subtitle */}
-          <p 
-            className="text-sm md:text-base text-primary tracking-wider uppercase mb-4 animate-fade-in"
-            style={{ animationDelay: "0.6s" }}
-          >
+          {/* Subtitle - Uppercase */}
+          <p className="text-xs md:text-sm text-foreground/90 tracking-[0.15em] uppercase mb-3 font-light">
             Your end-to-end partner for Dynamics 365 ERP, emerging technologies, and healthcare solutions.
           </p>
 
-          <p 
-            className="text-muted-foreground text-base md:text-lg mb-8 max-w-2xl animate-fade-in"
-            style={{ animationDelay: "0.8s" }}
-          >
+          {/* Description */}
+          <p className="text-foreground/70 text-sm md:text-base mb-10 font-light">
             25 Years of enabling digital transformation with Dynamics 365, ERP, Analytics & Healthcare
           </p>
 
           {/* CTA Button */}
-          <div className="animate-fade-in" style={{ animationDelay: "1s" }}>
-            <Button 
-              size="lg" 
-              className="bg-muted/50 hover:bg-muted text-foreground border border-border hover:border-primary transition-all duration-300 px-8"
-            >
-              TALK TO B2B SOFTWARE
-            </Button>
+          <button className="bg-foreground/10 hover:bg-foreground/20 text-foreground border border-foreground/30 hover:border-foreground/50 transition-all px-8 py-3 text-sm tracking-widest uppercase font-light">
+            Talk to B2B Software
+          </button>
+        </div>
+      </div>
+
+      {/* Years Experience Badge - Positioned */}
+      <div className="absolute left-6 lg:left-24 top-1/2 -translate-y-1/2 translate-y-[-120px] z-20 hidden lg:block">
+        <div className="flex items-baseline gap-1">
+          <span className="text-6xl font-bold text-foreground">25</span>
+          <div className="flex flex-col text-foreground/80">
+            <span className="text-sm font-light">Years</span>
+            <span className="text-xs text-foreground/60">Experience</span>
           </div>
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="absolute bottom-6 left-6">
-        <p className="text-xs text-muted-foreground">COPYRIGHT © 2026 B2BSOFTECH</p>
+      {/* Copyright - Bottom Left */}
+      <div className="absolute bottom-6 left-6 lg:left-10 z-20">
+        <p className="text-[10px] text-foreground/50 tracking-widest uppercase">
+          Copyright © 2026 B2BSoftech
+        </p>
       </div>
     </section>
   );
