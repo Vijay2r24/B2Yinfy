@@ -1,221 +1,206 @@
-import { useState, useEffect, forwardRef } from "react";
+﻿import { useEffect, useState } from "react";
 
-// You can replace these with actual image URLs or import actual image files
-const slides = [
-  {
-    id: 0,
-    title: "Digital Innovation Partner",
-    subtitle: "Leading technology solutions company driving digital transformation",
-    description: "Innovative solutions • Global reach • Cutting-edge technology • Award-winning digital platforms",
-    imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop&crop=center",
-    ctaText: "Explore Our Solutions"
-  },
-  {
-    id: 1,
-    title: "Cloud Solutions & Infrastructure",
-    subtitle: "Comprehensive cloud migration and infrastructure management",
-    description: "Expert cloud architecture, migration services, and scalable infrastructure solutions for modern businesses",
-    imageUrl: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1920&h=1080&fit=crop&crop=center",
-    ctaText: "Cloud Solutions"
-  },
-  {
-    id: 2,
-    title: "Custom Software Development",
-    subtitle: "Tailored software solutions for your business needs",
-    description: "Full-stack development, mobile applications, and enterprise software solutions with cutting-edge technologies",
-    imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&h=1080&fit=crop&crop=center",
-    ctaText: "Development Services"
-  },
-  {
-    id: 3,
-    title: "AI & Machine Learning",
-    subtitle: "Intelligent automation and data-driven insights",
-    description: "Advanced AI solutions, machine learning models, and intelligent automation for business optimization",
-    imageUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1920&h=1080&fit=crop&crop=center",
-    ctaText: "AI Solutions"
-  },
-  {
-    id: 4,
-    title: "Digital Marketing & Analytics",
-    subtitle: "Data-driven marketing strategies and analytics",
-    description: "Comprehensive digital marketing solutions with advanced analytics and performance optimization",
-    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&h=1080&fit=crop&crop=center",
-    ctaText: "Marketing Solutions"
-  },
-  {
-    id: 5,
-    title: "Cybersecurity Solutions",
-    subtitle: "Comprehensive security for digital assets",
-    description: "Advanced cybersecurity services, threat detection, and security infrastructure for enterprise protection",
-    imageUrl: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1920&h=1080&fit=crop&crop=center",
-    ctaText: "Security Solutions"
-  },
-  {
-    id: 6,
-    title: "E-commerce Platforms",
-    subtitle: "Complete e-commerce solutions and platforms",
-    description: "Custom e-commerce development, marketplace solutions, and digital commerce platforms for growth",
-    imageUrl: "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=1920&h=1080&fit=crop&crop=center",
-    ctaText: "E-commerce Solutions"
-  },
-  {
-    id: 7,
-    title: "Technology Consulting",
-    subtitle: "Strategic technology guidance and consulting",
-    description: "Expert technology consulting, digital strategy, and innovation roadmaps for business transformation",
-    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop&crop=center",
-    ctaText: "Consulting Services"
-  }
-];
+const WORDS = ["Innovation", "Excellence", "Transformation", "Leadership", "Growth"];
 
-const HeroSection = forwardRef(({ currentSlide: externalCurrentSlide, onSlideChange }, ref) => {
-  const [internalCurrentSlide, setInternalCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+const HeroSection = () => {
+  const [idx, setIdx] = useState(0);
+  const [show, setShow] = useState(true);
 
-  // Use external slide control if provided, otherwise use internal
-  const currentSlide = externalCurrentSlide !== undefined ? externalCurrentSlide : internalCurrentSlide;
-  const setCurrentSlide = onSlideChange || setInternalCurrentSlide;
-
-  // Auto-play functionality (disabled when external control is used)
   useEffect(() => {
-    if (!isAutoPlaying || externalCurrentSlide !== undefined) return;
-    
-    const interval = setInterval(() => {
-      setInternalCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // Change slide every 5 seconds
+    const t = setInterval(() => {
+      setShow(false);
+      setTimeout(() => { setIdx(p => (p + 1) % WORDS.length); setShow(true); }, 380);
+    }, 2800);
+    return () => clearInterval(t);
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, externalCurrentSlide]);
-
-  const handleSlideChange = (slideIndex) => {
-    setCurrentSlide(slideIndex);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 3000);
-  };
-
-  const handleMouseEnter = () => setIsAutoPlaying(false);
-  const handleMouseLeave = () => setIsAutoPlaying(true);
-
-  const currentSlideData = slides[currentSlide];
-  
   return (
-    <section 
-      id="hero-section"
-      className="relative h-full flex items-center overflow-hidden"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* Background Image - Different image for each slide */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
-        style={{ backgroundImage: `url(${currentSlideData.imageUrl})` }}
-      />
-      
-      {/* Dark Overlay for text readability */}
-      <div className="absolute inset-0 bg-black/50" />
+    <section className="relative h-screen w-full overflow-hidden flex items-center" style={{ paddingTop: "64px" }}>
 
-      {/* Hero Slide Navigation Dots - Right Side */}
-      <div className="absolute right-24 lg:right-32 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3">
-        {slides.map((slide, i) => (
-          <button
-            key={slide.id}
-            onClick={() => handleSlideChange(i)}
-            className={`group relative w-2 h-2 rounded-full transition-all duration-300 ${
-              i === currentSlide 
-                ? "bg-white/80 ring-1 ring-white/30 ring-offset-1 ring-offset-transparent scale-125"
-                : "bg-white/30 hover:bg-white/50 hover:scale-110"
-            }`}
-            aria-label={`Go to slide ${i + 1}: ${slide.title}`}
-          >
-            {/* Tooltip on hover */}
-            <div className="absolute right-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-              <div className="bg-white/90 text-black px-2 py-1 rounded text-[10px] whitespace-nowrap backdrop-blur-sm">
-                {slide.title}
-              </div>
-              {/* Arrow */}
-              <div className="absolute left-full top-1/2 -translate-y-1/2 -translate-x-1 w-0 h-0 border-l-2 border-l-white/90 border-t-1 border-t-transparent border-b-1 border-b-transparent"></div>
+      {/* Image Background */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop&q=90"
+          alt="Hero Background"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(6,9,18,0.95) 0%, rgba(6,9,18,0.7) 55%, rgba(6,9,18,0.35) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(6,9,18,1) 0%, transparent 45%)" }} />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.15) 0%, transparent 60%)" }} />
+      </div>
+
+      {/* Animated mesh grid */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 animate-mesh"
+          style={{
+            backgroundImage: "linear-gradient(rgba(99,102,241,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.07) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+            maskImage: "radial-gradient(ellipse at 65% 50%, black 30%, transparent 75%)",
+            WebkitMaskImage: "radial-gradient(ellipse at 65% 50%, black 30%, transparent 75%)",
+          }}
+        />
+      </div>
+
+      {/* Large glowing orbs */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute rounded-full animate-orb"
+          style={{ width: 700, height: 700, top: "-15%", right: "-5%",
+            background: "radial-gradient(circle, rgba(99,102,241,0.25) 0%, rgba(99,102,241,0.08) 40%, transparent 70%)",
+            filter: "blur(60px)", animationDuration: "16s" }} />
+        <div className="absolute rounded-full animate-orb"
+          style={{ width: 500, height: 500, bottom: "-10%", left: "5%",
+            background: "radial-gradient(circle, rgba(139,92,246,0.2) 0%, rgba(139,92,246,0.06) 40%, transparent 70%)",
+            filter: "blur(50px)", animationDelay: "5s", animationDuration: "20s" }} />
+        <div className="absolute rounded-full animate-orb-pulse"
+          style={{ width: 300, height: 300, top: "35%", right: "25%",
+            background: "radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)",
+            filter: "blur(40px)", animationDuration: "5s" }} />
+        <div className="absolute rounded-full animate-orb"
+          style={{ width: 200, height: 200, top: "10%", left: "40%",
+            background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)",
+            filter: "blur(30px)", animationDelay: "8s", animationDuration: "12s" }} />
+      </div>
+
+      {/* Rotating rings */}
+      <div className="absolute z-0 pointer-events-none hidden xl:block"
+        style={{ right: "6%", top: "50%", transform: "translateY(-50%)" }}>
+        <div className="relative" style={{ width: 460, height: 460 }}>
+          <div className="absolute inset-0 rounded-full animate-rotate-cw"
+            style={{ border: "1px solid rgba(99,102,241,0.2)", borderTopColor: "rgba(99,102,241,0.7)",
+              boxShadow: "0 0 30px rgba(99,102,241,0.1)" }} />
+          <div className="absolute rounded-full animate-rotate-ccw"
+            style={{ inset: 40, border: "1px solid rgba(139,92,246,0.15)", borderBottomColor: "rgba(139,92,246,0.6)" }} />
+          <div className="absolute rounded-full animate-rotate-cw"
+            style={{ inset: 90, border: "1px solid rgba(59,130,246,0.12)", borderLeftColor: "rgba(59,130,246,0.5)", animationDuration: "8s" }} />
+          <div className="absolute rounded-full animate-rotate-ccw"
+            style={{ inset: 140, border: "1px solid rgba(168,85,247,0.1)", borderTopColor: "rgba(168,85,247,0.4)", animationDuration: "6s" }} />
+          {/* Center glow */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-4 h-4 rounded-full animate-pulse-soft"
+              style={{ background: "radial-gradient(circle, rgba(99,102,241,0.9) 0%, rgba(99,102,241,0.3) 60%, transparent 100%)",
+                boxShadow: "0 0 20px rgba(99,102,241,0.8), 0 0 40px rgba(99,102,241,0.4)" }} />
+          </div>
+          {/* Orbit dots */}
+          {[
+            { deg: 0,   color: "#6366f1", glow: "rgba(99,102,241,0.8)"  },
+            { deg: 90,  color: "#8b5cf6", glow: "rgba(139,92,246,0.8)"  },
+            { deg: 180, color: "#3b82f6", glow: "rgba(59,130,246,0.8)"  },
+            { deg: 270, color: "#a855f7", glow: "rgba(168,85,247,0.8)"  },
+          ].map((o, i) => (
+            <div key={i} className="absolute inset-0 animate-rotate-cw" style={{ animationDuration: "16s" }}>
+              <div className="absolute w-2 h-2 rounded-full"
+                style={{ top: "50%", left: "50%",
+                  transform: `rotate(${o.deg}deg) translateX(220px) translateY(-50%)`,
+                  background: o.color, boxShadow: `0 0 8px ${o.glow}` }} />
             </div>
-            
-            {/* Progress indicator for current slide */}
-            {i === currentSlide && isAutoPlaying && (
-              <div className="absolute inset-0 rounded-full">
-                <div className="w-full h-full rounded-full border border-white/50 animate-spin-slow"></div>
-              </div>
-            )}
-          </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Rising particles */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {[
+          { left: "15%", delay: "0s",   size: 4, color: "rgba(99,102,241,0.7)"  },
+          { left: "25%", delay: "0.8s", size: 3, color: "rgba(139,92,246,0.6)"  },
+          { left: "35%", delay: "1.6s", size: 5, color: "rgba(59,130,246,0.5)"  },
+          { left: "45%", delay: "0.4s", size: 3, color: "rgba(168,85,247,0.6)"  },
+          { left: "20%", delay: "2.0s", size: 3, color: "rgba(139,92,246,0.7)"  },
+          { left: "30%", delay: "2.4s", size: 4, color: "rgba(99,102,241,0.6)"  },
+        ].map((p, i) => (
+          <div key={i} className="absolute rounded-full animate-particle"
+            style={{ left: p.left, bottom: "5%", width: p.size, height: p.size,
+              background: p.color, animationDelay: p.delay,
+              animationDuration: `${4 + i * 0.5}s`, filter: "blur(1px)", opacity: 0 }} />
+        ))}
+      </div>
+
+      {/* Ripple waves */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {[
+          { cx: "65%", cy: "45%", color: "rgba(99,102,241,0.5)",  delay: "0s"   },
+          { cx: "65%", cy: "45%", color: "rgba(99,102,241,0.3)",  delay: "1s"   },
+          { cx: "65%", cy: "45%", color: "rgba(99,102,241,0.15)", delay: "2s"   },
+          { cx: "75%", cy: "30%", color: "rgba(139,92,246,0.4)",  delay: "0.5s" },
+          { cx: "75%", cy: "30%", color: "rgba(139,92,246,0.2)",  delay: "1.5s" },
+        ].map((r, i) => (
+          <div key={i} className="absolute rounded-full animate-ripple"
+            style={{ left: r.cx, top: r.cy, width: 20, height: 20,
+              marginLeft: -10, marginTop: -10,
+              border: `2px solid ${r.color}`, animationDelay: r.delay, opacity: 0 }} />
         ))}
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full h-full flex items-center">
-        <div className="container mx-auto px-6 lg:px-12 xl:px-24">
-          <div className="grid lg:grid-cols-12 gap-8 items-center h-full py-20">
-            {/* Left Content - Text */}
-            <div className="lg:col-span-7 xl:col-span-6">
-              <div className="transition-all duration-500">
-                {/* Slide indicator */}
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-12 h-0.5 bg-white/60"></div>
-                  <span className="text-xs text-white/70 tracking-[0.2em] uppercase font-medium">
-                    {currentSlide === 0 ? 'Digital Innovation' : 
-                     currentSlide === 1 ? 'Cloud Solutions' :
-                     currentSlide === 2 ? 'Software Development' :
-                     currentSlide === 3 ? 'AI & ML' :
-                     currentSlide === 4 ? 'Digital Marketing' :
-                     currentSlide === 5 ? 'Cybersecurity' :
-                     currentSlide === 6 ? 'E-commerce' : 'Consulting'}
-                  </span>
-                </div>
+      <div className="relative z-10 w-full h-full flex items-center px-6 md:px-12 lg:px-20 xl:px-28">
+        <div className="max-w-2xl w-full">
 
-                {/* Main Title */}
-                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[0.9] tracking-tight">
-                  {currentSlideData.title}
-                </h1>
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5 glass animate-fade-up">
+            <span className="flex gap-1">
+              {["#6366f1","#8b5cf6","#3b82f6"].map((c,i) => (
+                <span key={i} className="w-1.5 h-1.5 rounded-full animate-pulse-soft"
+                  style={{ background:c, animationDelay:`${i*0.4}s` }} />
+              ))}
+            </span>
+            <span className="text-white/60 text-[11px] font-medium uppercase tracking-[0.2em]">B2YINFY Technologies</span>
+          </div>
 
-                {/* Subtitle */}
-                <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 font-light leading-relaxed max-w-2xl">
-                  {currentSlideData.subtitle}
-                </p>
+          {/* Heading */}
+          <h1 className="mb-3 animate-fade-up delay-100"
+            style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(2.4rem,5.5vw,5rem)",
+              fontWeight:800, lineHeight:1.05, letterSpacing:"-0.025em" }}>
+            <span className="text-white block">We Build</span>
+            <span className="text-glow block">Digital Futures</span>
+          </h1>
 
-                {/* Description */}
-                <p className="text-base md:text-lg text-white/75 mb-10 font-light leading-relaxed max-w-xl">
-                  {currentSlideData.description}
-                </p>
+          {/* Rotating word */}
+          <div className="flex items-center gap-3 mb-4 h-8 animate-fade-up delay-200">
+            <span className="text-white/40 text-base font-light">Driving</span>
+            <span className="text-base font-bold text-glow-warm"
+              style={{ opacity:show?1:0, transform:show?"translateY(0)":"translateY(-10px)",
+                transition:"all 0.4s cubic-bezier(0.16,1,0.3,1)", display:"inline-block", minWidth:180 }}>
+              {WORDS[idx]}
+            </span>
+          </div>
 
-                {/* CTA Button */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <button className="bg-white/10 hover:bg-white/20 text-white border border-white/30 hover:border-white/50 transition-all duration-300 px-8 py-4 text-sm tracking-wide uppercase font-medium group backdrop-blur-sm rounded-lg">
-                    {currentSlideData.ctaText}
-                    <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
-                  </button>
-                  <button className="text-white/80 hover:text-white text-sm tracking-wide uppercase font-medium transition-colors duration-300 flex items-center gap-2">
-                    Learn More
-                    <span className="w-4 h-4 border border-white/50 rounded-full flex items-center justify-center">
-                      <span className="w-1.5 h-1.5 bg-white/70 rounded-full"></span>
-                    </span>
-                  </button>
-                </div>
+          <p className="text-white/45 text-sm leading-relaxed mb-7 max-w-md animate-fade-up delay-300">
+            End-to-end partner for cloud solutions, AI, digital transformation,
+            and innovative software development. Trusted by 50+ clients globally.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-wrap items-center gap-3 mb-10 animate-fade-up delay-400">
+            <a href="#" className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300"
+              style={{ background:"linear-gradient(135deg,rgba(14,165,233,0.15),rgba(6,182,212,0.1))", border:"1px solid rgba(14,165,233,0.35)", color:"#7dd3fc", boxShadow:"0 0 16px rgba(14,165,233,0.12)" }}>
+              Get Started
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a href="#" className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium text-white/50 hover:text-white/80 transition-all duration-300"
+              style={{ border:"1px solid rgba(255,255,255,0.1)", background:"rgba(255,255,255,0.04)" }}>
+              <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs" style={{ background:"rgba(255,255,255,0.08)" }}>▶</span>
+              Watch Demo
+            </a>
+          </div>
+
+          {/* Stats */}
+          <div className="flex items-center gap-8 animate-fade-up delay-500">
+            {[["50+","Clients"],["5+","Years"],["100+","Projects"],["24/7","Support"]].map(([v,l],i) => (
+              <div key={i} className="flex flex-col">
+                <span className="text-xl font-black text-white leading-none" style={{ fontFamily:"'Outfit',sans-serif" }}>{v}</span>
+                <span className="text-white/30 text-[9px] uppercase tracking-[0.2em] mt-0.5">{l}</span>
               </div>
-            </div>
-
-            {/* Right Content - Stats/Info */}
-            <div className="lg:col-span-5 xl:col-span-6 lg:pl-8">
-              <div className="hidden lg:block">
-                {/* Empty space for balance */}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Copyright - Bottom Left */}
-      <div className="absolute bottom-6 left-6 lg:left-10 z-20">
-        <p className="text-[10px] text-white/50 tracking-widest uppercase">
-          Copyright © 2026 B2Yinfy
-        </p>
-      </div>
     </section>
   );
-});
+};
 
 export default HeroSection;
+
+
+
