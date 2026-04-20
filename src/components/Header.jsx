@@ -37,30 +37,18 @@ const Header = () => {
 
           {/* Logo */}
           <a href="/" className="group flex items-center gap-2.5 flex-shrink-0">
-            <div className="relative flex-shrink-0 transition-transform duration-300 group-hover:scale-105" style={{ paddingRight: 10 }}>
-              {/* b2y letters */}
-              <div className="flex items-end leading-none select-none"
-                style={{ fontFamily:"'Outfit',sans-serif", fontWeight:900, lineHeight:1, gap:1 }}>
-                <span style={{ fontSize:36, background:"linear-gradient(170deg,#3b82f6,#1d4ed8)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>b</span>
-                <span style={{ fontSize:24, background:"linear-gradient(170deg,#3b82f6,#1d4ed8)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", marginBottom:2 }}>2</span>
-                <span style={{ fontSize:36, background:"linear-gradient(170deg,#0ea5e9,#06b6d4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>y</span>
-              </div>
-              {/* Globe on top-right of y */}
-              <div className="absolute rounded-full flex items-center justify-center"
-                style={{ width:18, height:18, top:-4, right:-2, background:"linear-gradient(135deg,#0ea5e9,#06b6d4)", boxShadow:"0 0 10px rgba(14,165,233,0.7)" }}>
-                <svg viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="white" strokeWidth="1.2">
-                  <circle cx="7" cy="7" r="5.5"/>
-                  <ellipse cx="7" cy="7" rx="2.8" ry="5.5"/>
-                  <line x1="1.5" y1="7" x2="12.5" y2="7"/>
-                  <line x1="2.2" y1="4.5" x2="11.8" y2="4.5"/>
-                  <line x1="2.2" y1="9.5" x2="11.8" y2="9.5"/>
-                </svg>
-              </div>
-            </div>
-            {/* Text */}
-            <div className="hidden sm:flex flex-col leading-none">
+            <img
+              src="/logoPinkTransperant.c6af2d1c926f2e4ba7f1 (2).png"
+              alt="B2YINFY Logo"
+              className="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
+              style={{ filter: "drop-shadow(0 0 8px rgba(14,165,233,0.4))" }}
+            />
+            <div className="hidden sm:flex flex-col leading-none gap-0.5">
               <span className="font-black text-sm tracking-[0.1em] text-white" style={{ fontFamily:"'Outfit',sans-serif" }}>B2YINFY</span>
-              <span className="text-white/35 text-[7px] tracking-[0.25em] uppercase mt-0.5">Technologies</span>
+              <span className="text-[9px] font-medium italic"
+                style={{ background:"linear-gradient(135deg,#f97316,#fb923c)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", fontFamily:"Georgia,serif" }}>
+                you Believe We Achieve
+              </span>
             </div>
           </a>
 
@@ -120,25 +108,12 @@ const Header = () => {
         <div className="flex items-center justify-between px-5 py-4 relative z-10"
           style={{ borderBottom:"1px solid rgba(255,255,255,0.06)" }}>
           <div className="flex items-center gap-2.5">
-            {/* Same CSS logo */}
-            <div className="relative flex-shrink-0" style={{ paddingRight: 8 }}>
-              <div className="flex items-end leading-none select-none"
-                style={{ fontFamily:"'Outfit',sans-serif", fontWeight:900, lineHeight:1, gap:1 }}>
-                <span style={{ fontSize:30, background:"linear-gradient(170deg,#3b82f6,#1d4ed8)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>b</span>
-                <span style={{ fontSize:20, background:"linear-gradient(170deg,#3b82f6,#1d4ed8)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text", marginBottom:2 }}>2</span>
-                <span style={{ fontSize:30, background:"linear-gradient(170deg,#0ea5e9,#06b6d4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>y</span>
-              </div>
-              <div className="absolute rounded-full flex items-center justify-center"
-                style={{ width:16, height:16, top:-3, right:-2, background:"linear-gradient(135deg,#0ea5e9,#06b6d4)", boxShadow:"0 0 8px rgba(14,165,233,0.6)" }}>
-                <svg viewBox="0 0 14 14" width="10" height="10" fill="none" stroke="white" strokeWidth="1.2">
-                  <circle cx="7" cy="7" r="5.5"/>
-                  <ellipse cx="7" cy="7" rx="2.8" ry="5.5"/>
-                  <line x1="1.5" y1="7" x2="12.5" y2="7"/>
-                  <line x1="2.2" y1="4.5" x2="11.8" y2="4.5"/>
-                  <line x1="2.2" y1="9.5" x2="11.8" y2="9.5"/>
-                </svg>
-              </div>
-            </div>
+            <img
+              src="/logoPinkTransperant.c6af2d1c926f2e4ba7f1 (2).png"
+              alt="B2YINFY Logo"
+              className="h-8 w-auto"
+              style={{ filter: "drop-shadow(0 0 6px rgba(14,165,233,0.4))" }}
+            />
             <div>
               <p className="text-white font-black text-xs tracking-[0.08em]" style={{ fontFamily:"'Outfit',sans-serif" }}>B2YINFY</p>
               <p className="text-white/30 text-[7px] tracking-[0.25em] uppercase">Technologies</p>
