@@ -5,85 +5,137 @@
 ];
 
 const InvestorsSection = () => (
-  <section className="h-screen w-full flex items-center relative overflow-hidden section-dark" style={{ paddingTop:"64px" }}>
+  <section className="h-screen w-full flex items-center relative overflow-hidden section-dark" style={{ paddingTop:"72px" }}>
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <div className="absolute w-[500px] h-[500px] rounded-full animate-orb"
-        style={{ top: "50%", right: "-10%", background: "radial-gradient(circle,rgba(14,165,233,0.08) 0%,transparent 65%)", filter: "blur(90px)", transform: "translateY(-50%)" }} />
+        style={{ top:"50%", right:"-10%", background:"radial-gradient(circle,rgba(14,165,233,0.1) 0%,transparent 65%)", filter:"blur(90px)", transform:"translateY(-50%)" }} />
     </div>
-    <div className="absolute inset-0 pointer-events-none"
-      style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
 
-    <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 xl:px-28 pt-0">
-      <div className="max-w-5xl mx-auto">
+    <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 xl:px-28 pt-6">
 
-        {/* Header */}
-        <div className="text-center mb-3 animate-fade-up">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-3 glass">
-            <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse-soft" />
-            <span className="text-sky-300 text-xs font-semibold uppercase tracking-[0.2em]">Investor Relations</span>
+      {/* Badge + Title row */}
+      <div className="flex items-center justify-between mb-4 animate-fade-up">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-2"
+            style={{ background:"linear-gradient(135deg,#dbeafe,#e0f2fe)", border:"1px solid #93c5fd" }}>
+            <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse-soft flex-shrink-0" />
+            <span className="text-sky-700 text-[11px] font-bold uppercase tracking-[0.15em]">Investor Relations</span>
           </div>
-          <h2 style={{ fontFamily: "'Outfit',sans-serif", fontSize: "clamp(1.5rem,2.8vw,2.5rem)", fontWeight: 800, letterSpacing: "-0.025em" }}>
-            <span className="text-white">Investor </span>
-            <span style={{ background: "linear-gradient(135deg,#38bdf8,#0ea5e9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Central</span>
+          <h2 style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(1.4rem,2.5vw,2.2rem)", fontWeight:800, letterSpacing:"-0.025em" }}>
+            <span className="text-slate-900">Investor </span>
+            <span className="text-glow-cool">Central</span>
           </h2>
         </div>
+        <a href="#" className="text-sky-600 hover:text-sky-800 text-sm font-semibold transition-colors">All Reports →</a>
+      </div>
 
-        {/* Card */}
-        <div className="rounded-2xl overflow-hidden animate-scale-up delay-200"
-          style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 20px 60px rgba(0,0,0,0.4)" }}>
-          <div className="grid md:grid-cols-2">
+      {/* Main layout — 2 columns */}
+      <div className="grid lg:grid-cols-2 gap-4 animate-scale-up delay-100">
 
-            {/* Image */}
-            <div className="relative overflow-hidden" style={{ height: 260 }}>
-              <img src="https://avccpalmdale.com/B2B/img/graphs.jpg" alt="Annual Report"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(14,165,233,0.25),rgba(6,182,212,0.15))", mixBlendMode: "multiply" }} />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to top,rgba(6,9,18,0.7) 0%,transparent 50%)" }} />
-              <div className="absolute bottom-4 left-4">
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-white text-xs font-semibold glass">
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                  Annual Report 2025
-                </span>
-              </div>
-            </div>
+        {/* Left column */}
+        <div className="flex flex-col gap-3">
 
-            {/* Content */}
-            <div className="p-6 flex flex-col justify-center">
-              <h4 className="text-xl font-bold mb-1"
-                style={{ fontFamily: "'Outfit',sans-serif", background: "linear-gradient(135deg,#38bdf8,#0ea5e9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                Investor Central
-              </h4>
-              <p className="text-white/35 text-xs mb-4">B2YINFY is publicly listed. Access financial reports, governance documents, and shareholder information.</p>
-
-              <div className="space-y-2 mb-4">
-                {reports.map((item, i) => (
-                  <div key={i} className="glass-card p-3 rounded-xl">
-                    <p className="text-[9px] text-sky-400 uppercase tracking-widest font-semibold mb-0.5">{item.label}</p>
-                    <a href={item.href} target="_blank" rel="noopener noreferrer"
-                      className="text-sm text-white/60 hover:text-white font-medium transition-colors">
-                      {item.text}
-                      <span className="ml-1 text-sky-400">→</span>
-                    </a>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex items-center gap-3 p-3 rounded-xl glass">
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: "linear-gradient(135deg,#0ea5e9,#06b6d4)" }}>
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-white/60 text-xs font-semibold">BSE Listed Company</p>
-                  <p className="text-white/30 text-[10px]">Bombay Stock Exchange · Symbol: B2YINFY</p>
-                </div>
-              </div>
+          {/* Image card */}
+          <div className="relative rounded-2xl overflow-hidden"
+            style={{ height:180, border:"1px solid #dbeafe" }}>
+            <img src="https://avccpalmdale.com/B2B/img/graphs.jpg" alt="Annual Report"
+              className="w-full h-full object-cover" />
+            <div className="absolute inset-0" style={{ background:"linear-gradient(to top,rgba(2,132,199,0.7) 0%,transparent 55%)" }} />
+            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+              <span className="text-white text-xs font-bold">📊 Annual Report 2025</span>
+              <a href="https://avccpalmdale.com/B2B/Investors_Column/AnnualReport_2025.pdf"
+                target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-white text-xs font-semibold"
+                style={{ background:"linear-gradient(135deg,#0ea5e9,#0284c7)" }}>
+                Download
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </a>
             </div>
           </div>
+
+          {/* Stats row */}
+          <div className="grid grid-cols-4 gap-2">
+            {[
+              { val:"BSE",    label:"Exchange",  color:"#0284c7" },
+              { val:"AAA",    label:"Rating",    color:"#059669" },
+              { val:"₹50Cr+", label:"Revenue",   color:"#7c3aed" },
+              { val:"2000",   label:"Founded",   color:"#d97706" },
+            ].map((h, i) => (
+              <div key={i} className="rounded-xl p-2.5 text-center"
+                style={{ background:"#ffffff", border:`1.5px solid ${h.color}20`, boxShadow:`0 1px 6px ${h.color}10` }}>
+                <div className="font-black text-sm leading-none mb-0.5"
+                  style={{ fontFamily:"'Outfit',sans-serif", color:h.color }}>{h.val}</div>
+                <div className="text-slate-400 text-[8px] uppercase tracking-[0.1em] font-semibold">{h.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* BSE badge */}
+          <div className="p-3 rounded-xl flex items-center gap-3"
+            style={{ background:"linear-gradient(135deg,#f0f9ff,#e0f2fe)", border:"1.5px solid #7dd3fc" }}>
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{ background:"linear-gradient(135deg,#0ea5e9,#0284c7)" }}>
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <p className="text-slate-800 text-xs font-bold">BSE Listed Company</p>
+              <p className="text-slate-500 text-[10px]">Bombay Stock Exchange · Symbol: B2YINFY</p>
+            </div>
+            <div className="flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse-soft" />
+              <span className="text-green-600 text-[10px] font-bold">Live</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right column */}
+        <div className="flex flex-col gap-3">
+
+          {/* Description */}
+          <div className="p-4 rounded-2xl"
+            style={{ background:"#ffffff", border:"1px solid #dbeafe" }}>
+            <h4 className="text-slate-900 text-sm font-bold mb-1" style={{ fontFamily:"'Outfit',sans-serif" }}>
+              About Investor Relations
+            </h4>
+            <p className="text-slate-500 text-xs leading-relaxed">
+              B2YINFY is publicly listed on the Bombay Stock Exchange. Access our financial reports, governance documents, and shareholder information to make informed investment decisions.
+            </p>
+          </div>
+
+          {/* Reports */}
+          <div className="flex flex-col gap-2">
+            {reports.map((item, i) => (
+              <a key={i} href={item.href} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 group"
+                style={{ background:"#ffffff", border:"1px solid #dbeafe", boxShadow:"0 1px 4px rgba(14,165,233,0.06)" }}>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ background:"linear-gradient(135deg,#dbeafe,#e0f2fe)" }}>
+                  <svg className="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[9px] text-sky-600 uppercase tracking-widest font-bold mb-0.5">{item.label}</p>
+                  <p className="text-slate-800 text-sm font-semibold truncate group-hover:text-sky-700 transition-colors">{item.text}</p>
+                </div>
+                <svg className="w-4 h-4 text-slate-300 group-hover:text-sky-500 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <a href="#" className="inline-flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white transition-all duration-300 btn-glow">
+            View All Investor Documents
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -91,10 +143,3 @@ const InvestorsSection = () => (
 );
 
 export default InvestorsSection;
-
-
-
-
-
-
-

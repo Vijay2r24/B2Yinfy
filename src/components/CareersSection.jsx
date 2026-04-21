@@ -1,8 +1,7 @@
 ﻿const btnStyle = {
-  background: "linear-gradient(135deg,rgba(14,165,233,0.15),rgba(6,182,212,0.1))",
-  border: "1px solid rgba(14,165,233,0.35)",
-  color: "#7dd3fc",
-  boxShadow: "0 0 16px rgba(14,165,233,0.12)",
+  background: "linear-gradient(135deg,#0ea5e9,#06b6d4)",
+  color: "#ffffff",
+  boxShadow: "0 4px 16px rgba(14,165,233,0.3)",
 };
 
 const perks = [
@@ -23,7 +22,7 @@ const openRoles = [
 ];
 
 const CareersSection = () => (
-  <section className="h-screen w-full flex items-center relative overflow-hidden section-dark" style={{ paddingTop:"64px" }}>
+  <section className="h-screen w-full flex items-center relative overflow-hidden section-dark" style={{ paddingTop:"72px" }}>
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <div className="absolute w-[600px] h-[600px] rounded-full animate-orb"
         style={{ top: "-20%", right: "-5%", background: "radial-gradient(circle,rgba(14,165,233,0.1) 0%,transparent 65%)", filter: "blur(90px)" }} />
@@ -31,37 +30,38 @@ const CareersSection = () => (
         style={{ bottom: "-15%", left: "10%", background: "radial-gradient(circle,rgba(6,182,212,0.08) 0%,transparent 65%)", filter: "blur(70px)", animationDelay: "6s" }} />
     </div>
     <div className="absolute inset-0 pointer-events-none"
-      style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
+      style={{ backgroundImage: "radial-gradient(rgba(14,165,233,0.08) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
 
-    <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 xl:px-28 pt-0">
+    <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 xl:px-28 pt-4">
       <div className="grid lg:grid-cols-2 gap-8 xl:gap-14 items-center">
 
         {/* Left */}
         <div className="animate-slide-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-3 glass">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-3" style={{ background:"linear-gradient(135deg,#dbeafe,#e0f2fe)", border:"1px solid #93c5fd" }}>
             <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse-soft" />
-            <span className="text-sky-300 text-xs font-semibold uppercase tracking-[0.2em]">Join Our Team</span>
+            <span className="text-sky-700 text-xs font-bold uppercase tracking-[0.15em]">Join Our Team</span>
           </div>
 
           <h2 className="mb-4 leading-tight" style={{ fontFamily: "'Outfit',sans-serif",
             fontSize: "clamp(1.6rem,3vw,2.8rem)", fontWeight: 800, letterSpacing: "-0.025em" }}>
-            <span className="text-white">Build the Future</span><br />
+            <span className="text-slate-900">Build the Future</span><br />
             <span className="text-glow">With B2YINFY</span>
           </h2>
 
-          <p className="text-white/45 text-sm leading-relaxed mb-3 max-w-md">
+          <p className="text-slate-700 text-sm leading-relaxed mb-3 max-w-md">
             Join passionate technologists driving digital transformation. Work on real-world problems with cutting-edge technology.
           </p>
 
-          {/* Open roles */}
+          {/* Open roles — no white cards, use subtle colored rows */}
           <div className="space-y-2 mb-3">
             {openRoles.map((r, i) => (
-              <div key={i} className="glass-card flex items-center justify-between px-4 py-3 rounded-xl group cursor-pointer">
+              <div key={i} className="flex items-center justify-between px-4 py-3 rounded-xl group cursor-pointer transition-all duration-200 hover:bg-sky-50"
+                style={{ borderLeft:"3px solid #0ea5e9", background:"rgba(14,165,233,0.05)" }}>
                 <div>
-                  <p className="text-white/80 text-sm font-semibold group-hover:text-white transition-colors">{r.title}</p>
-                  <p className="text-white/30 text-xs">{r.dept} Â· {r.type}</p>
+                  <p className="text-slate-900 text-sm font-semibold">{r.title}</p>
+                  <p className="text-slate-500 text-xs">{r.dept} · {r.type}</p>
                 </div>
-                <svg className="w-4 h-4 text-white/30 group-hover:text-sky-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
@@ -76,7 +76,7 @@ const CareersSection = () => (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
-            <span className="text-white/30 text-sm">10+ open positions</span>
+            <span className="text-slate-700 text-sm">10+ open positions</span>
           </div>
         </div>
 
@@ -84,15 +84,16 @@ const CareersSection = () => (
         <div className="animate-slide-right">
           <div className="grid grid-cols-2 gap-3">
             {perks.map((p, i) => (
-              <div key={i} className="glass-card rounded-2xl p-5 relative overflow-hidden group">
+              <div key={i} className="rounded-2xl p-4 relative overflow-hidden group transition-all duration-300 hover:-translate-y-1"
+                style={{ background:"#ffffff", borderTop:`3px solid ${p.color}`, border:`1px solid ${p.color}25`, borderTopWidth:"3px", boxShadow:`0 2px 12px ${p.color}12` }}>
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl"
                   style={{ background: `radial-gradient(circle at 30% 30%,${p.color}15 0%,transparent 70%)` }} />
                 <div className="absolute bottom-0 left-0 right-0 h-px"
                   style={{ background: `linear-gradient(90deg,transparent,${p.color}50,transparent)` }} />
                 <div className="relative z-10">
-                  <div className="mb-3 p-2 rounded-xl w-fit" style={{ background: `${p.color}18`, color: p.color }}>{p.icon}</div>
-                  <h4 className="text-white text-sm font-bold mb-1.5" style={{ fontFamily: "'Outfit',sans-serif" }}>{p.title}</h4>
-                  <p className="text-white/35 text-xs leading-relaxed">{p.desc}</p>
+                  <div className="mb-3 p-2 rounded-xl w-fit" style={{ background:`${p.color}15`, color:p.color }}>{p.icon}</div>
+                  <h4 className="text-slate-900 text-sm font-bold mb-1.5" style={{ fontFamily: "'Outfit',sans-serif" }}>{p.title}</h4>
+                  <p className="text-slate-700 text-xs leading-relaxed">{p.desc}</p>
                 </div>
               </div>
             ))}
@@ -104,6 +105,14 @@ const CareersSection = () => (
 );
 
 export default CareersSection;
+
+
+
+
+
+
+
+
 
 
 

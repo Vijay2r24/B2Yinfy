@@ -56,14 +56,14 @@ const Index = () => {
   const { Component: ActiveSection } = sections[current];
 
   return (
-    <div className="h-screen w-screen overflow-hidden relative" style={{ background:"#03071e" }}>
+    <div className="h-screen w-screen overflow-hidden relative" style={{ background:"#e8eeff" }}>
       <Header currentSection={current} onNavigate={goTo} />
 
       {/* Cinematic overlay transition */}
       <div
         className="fixed inset-0 z-30 pointer-events-none"
         style={{
-          background: "linear-gradient(160deg,#03071e 0%,#050d2e 50%,#03071e 100%)",
+          background: "linear-gradient(160deg,#e8eeff 0%,#dde8ff 50%,#e8eeff 100%)",
           transform: overlayActive
             ? "translateY(0%)"
             : overlayDir === "down" ? "translateY(-100%)" : "translateY(100%)",
@@ -84,12 +84,12 @@ const Index = () => {
           <button key={s.id} onClick={() => goTo(i)} aria-label={s.label}
             className="group flex items-center gap-1.5">
             <span className={`text-[9px] tracking-widest uppercase transition-all duration-300 ${
-              i === current ? "text-white/70" : "text-white/0 group-hover:text-white/50"
+              i === current ? "text-sky-600" : "text-slate-300 group-hover:text-slate-500"
             }`}>{s.label}</span>
             <span className={`block rounded-full transition-all duration-300 ${
               i === current
-                ? "w-5 h-1 bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]"
-                : "w-1 h-1 bg-white/20 group-hover:bg-blue-400/50 group-hover:w-2.5"
+                ? "w-5 h-1 bg-sky-500 shadow-[0_0_8px_rgba(14,165,233,0.6)]"
+                : "w-1 h-1 bg-slate-300 group-hover:bg-sky-400 group-hover:w-2.5"
             }`} />
           </button>
         ))}
@@ -97,16 +97,16 @@ const Index = () => {
 
       {/* Bottom counter */}
       <div className="fixed bottom-4 right-4 z-40 flex items-center gap-1.5">
-        <span className="text-white/60 font-bold text-xs">{String(current + 1).padStart(2,"0")}</span>
-        <div className="w-6 h-px bg-white/25" />
-        <span className="text-white/30 text-xs">{String(sections.length).padStart(2,"0")}</span>
+        <span className="text-slate-500 font-bold text-xs">{String(current + 1).padStart(2,"0")}</span>
+        <div className="w-6 h-px bg-slate-300" />
+        <span className="text-slate-400 text-xs">{String(sections.length).padStart(2,"0")}</span>
       </div>
 
       {/* Scroll hint */}
       {current < sections.length - 1 && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-1">
-          <div className="w-px h-6 bg-gradient-to-b from-transparent to-white/40 animate-pulse" />
-          <span className="text-white/25 text-[8px] uppercase tracking-[0.3em]">scroll</span>
+          <div className="w-px h-6 bg-gradient-to-b from-transparent to-sky-400/50 animate-pulse" />
+          <span className="text-slate-400 text-[8px] uppercase tracking-[0.3em]">scroll</span>
         </div>
       )}
     </div>
@@ -114,4 +114,5 @@ const Index = () => {
 };
 
 export default Index;
+
 
