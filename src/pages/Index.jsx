@@ -1,4 +1,5 @@
 ﻿import { useState, useEffect, useRef } from "react";
+import AOS from "aos";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -31,7 +32,7 @@ const Index = () => {
     setOverlayActive(true);
     setTimeout(() => setCurrent(next), 380);
     setTimeout(() => setOverlayActive(false), 520);
-    setTimeout(() => { locked.current = false; }, 1000);
+    setTimeout(() => { locked.current = false; AOS.refreshHard(); }, 1000);
   };
 
   useEffect(() => {
@@ -56,57 +57,54 @@ const Index = () => {
   const { Component: ActiveSection } = sections[current];
 
   return (
-    <div className="h-screen w-screen overflow-hidden relative" style={{ background:"#e8eeff" }}>
+    <div className="h-screen w-screen overflow-hidden relative" style={{ background:"#ffffff" }}>
       <Header currentSection={current} onNavigate={goTo} />
 
       {/* Cinematic overlay transition */}
       <div
-        className="fixed inset-0 z-30 pointer-events-none"
+        className="fixed inset-0 z-30 pointer-events-none page-overlay"
         style={{
-          background: "linear-gradient(160deg,#e8eeff 0%,#dde8ff 50%,#e8eeff 100%)",
+          background: "#ffffff",
           transform: overlayActive
             ? "translateY(0%)"
             : overlayDir === "down" ? "translateY(-100%)" : "translateY(100%)",
-          transition: overlayActive
-            ? "transform 0.38s cubic-bezier(0.76,0,0.24,1)"
-            : "transform 0.44s cubic-bezier(0.76,0,0.24,1)",
         }}
       />
 
       {/* Section */}
-      <main className="h-full w-full">
+      <main className="h-full w-full section-enter" key={current}>
         <ActiveSection />
       </main>
 
       {/* Right nav dots */}
-      <div className="fixed right-3 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 items-end">
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 items-end">
         {sections.map((s, i) => (
           <button key={s.id} onClick={() => goTo(i)} aria-label={s.label}
-            className="group flex items-center gap-1.5">
-            <span className={`text-[9px] tracking-widest uppercase transition-all duration-300 ${
-              i === current ? "text-sky-600" : "text-slate-300 group-hover:text-slate-500"
+            className="group flex items-center gap-2 cursor-pointer">
+            <span className={`text-[9px] tracking-[0.15em] uppercase font-bold transition-all duration-300 ${
+              i === current ? "text-blue-700 opacity-100" : "text-slate-400 opacity-0 group-hover:opacity-100"
             }`}>{s.label}</span>
             <span className={`block rounded-full transition-all duration-300 ${
               i === current
-                ? "w-5 h-1 bg-sky-500 shadow-[0_0_8px_rgba(14,165,233,0.6)]"
-                : "w-1 h-1 bg-slate-300 group-hover:bg-sky-400 group-hover:w-2.5"
+                ? "w-6 h-1.5 bg-blue-600 nav-dot-active"
+                : "w-1.5 h-1.5 bg-slate-300 group-hover:bg-blue-400 group-hover:w-3"
             }`} />
           </button>
         ))}
       </div>
 
       {/* Bottom counter */}
-      <div className="fixed bottom-4 right-4 z-40 flex items-center gap-1.5">
-        <span className="text-slate-500 font-bold text-xs">{String(current + 1).padStart(2,"0")}</span>
-        <div className="w-6 h-px bg-slate-300" />
-        <span className="text-slate-400 text-xs">{String(sections.length).padStart(2,"0")}</span>
+      <div className="fixed bottom-5 right-5 z-40 flex items-center gap-2">
+        <span className="text-slate-700 font-black text-xs" style={{ fontFamily:"'Outfit',sans-serif" }}>{String(current + 1).padStart(2,"0")}</span>
+        <div className="w-8 h-px bg-slate-300" />
+        <span className="text-slate-400 text-xs font-medium">{String(sections.length).padStart(2,"0")}</span>
       </div>
 
       {/* Scroll hint */}
       {current < sections.length - 1 && (
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-1">
-          <div className="w-px h-6 bg-gradient-to-b from-transparent to-sky-400/50 animate-pulse" />
-          <span className="text-slate-400 text-[8px] uppercase tracking-[0.3em]">scroll</span>
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-1.5">
+          <div className="w-px h-7 bg-gradient-to-b from-transparent to-blue-500/60 animate-pulse" />
+          <span className="text-slate-400 text-[8px] uppercase tracking-[0.3em] font-semibold">scroll</span>
         </div>
       )}
     </div>
@@ -114,5 +112,8 @@ const Index = () => {
 };
 
 export default Index;
+
+
+
 
 

@@ -1,191 +1,129 @@
-import { MapPin, Phone, Mail, Globe, Linkedin, Twitter, Facebook, Instagram, ArrowRight, Heart, Building2, MessageCircle, Clock } from "lucide-react";
+﻿import { Linkedin, Twitter, Facebook, Instagram, ArrowUpRight, Heart, MapPin, Mail, Phone, Clock } from "lucide-react";
 
-const Footer = () => {
-  return (
-    <footer className="bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 text-white">
-      {/* Main Footer Content */}
-      <div className="container mx-auto px-6 lg:px-24 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          
-          {/* Company Info */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full border-2 border-blue-400 flex items-center justify-center bg-blue-500/10">
-                <span className="text-blue-400 font-bold text-sm">B2Y</span>
-              </div>
-              <div>
-                <div className="text-white font-bold text-lg">B2YINFY</div>
-                <div className="text-gray-400 text-xs tracking-wide">TECHNOLOGIES</div>
-              </div>
+const Footer = () => (
+  <footer style={{ background:"#0a1628" }} className="text-white">
+    {/* Top accent */}
+    <div className="h-1 w-full" style={{ background:"linear-gradient(90deg,#1e40af,#2563eb,#06b6d4,#22d3ee)" }} />
+
+    <div className="max-w-screen-xl mx-auto px-6 lg:px-12 py-14">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+        {/* Brand */}
+        <div data-aos="fade-up" data-aos-delay="0" className="lg:col-span-1">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center"
+              style={{ background:"linear-gradient(135deg,#1e40af,#0ea5e9)", boxShadow:"0 4px 14px rgba(37,99,235,0.4)" }}>
+              <span className="text-white font-black text-sm" style={{ fontFamily:"'Outfit',sans-serif" }}>B2Y</span>
             </div>
-            
-            <p className="text-gray-300 text-sm leading-relaxed mb-6">
-              Leading technology solutions provider specializing in digital transformation, cloud solutions, and innovative software development for modern businesses.
-            </p>
-
-            {/* Social Media */}
-            <div className="flex items-center gap-4">
-              <span className="text-gray-400 text-sm">Follow us:</span>
-              <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 bg-white/10 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-white/10 hover:bg-blue-400 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-white/10 hover:bg-pink-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
-                  <Instagram className="w-5 h-5" />
-                </a>
-              </div>
+            <div>
+              <div className="text-white font-black text-base" style={{ fontFamily:"'Outfit',sans-serif" }}>B2YINFY</div>
+              <div className="text-slate-500 text-[9px] tracking-[0.2em] uppercase font-semibold">Technologies</div>
             </div>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-white font-semibold text-lg mb-6 relative">
-              Quick Links
-              <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
-            </h3>
-            <ul className="space-y-3">
-              {[
-                { label: "Home", href: "/" },
-                { label: "About Us", href: "/about" },
-                { label: "Services", href: "/services" },
-                { label: "Solutions", href: "#solutions" },
-                { label: "Contact", href: "#contact" }
-              ].map((link, index) => (
-                <li key={index}>
-                  <a 
-                    href={link.href} 
-                    className="text-gray-300 hover:text-blue-400 text-sm transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          <p data-aos="fade-up" data-aos-delay="60" className="text-slate-400 text-sm leading-relaxed mb-5">
+            Leading technology solutions provider specializing in digital transformation, cloud solutions, and innovative software development.
+          </p>
+          <div className="flex gap-2 stagger-children">
+            {[
+              { Icon:Linkedin,  bg:"hover:bg-blue-600",  label:"LinkedIn"  },
+              { Icon:Twitter,   bg:"hover:bg-sky-500",   label:"Twitter"   },
+              { Icon:Facebook,  bg:"hover:bg-blue-700",  label:"Facebook"  },
+              { Icon:Instagram, bg:"hover:bg-pink-500",  label:"Instagram" },
+            ].map(({ Icon, bg, label }, i) => (
+              <a key={i} href="#" aria-label={label}
+                className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-250 hover:scale-110 hover:-translate-y-1 ${bg}`}
+                style={{ background:"rgba(255,255,255,0.07)", border:"1px solid rgba(255,255,255,0.1)" }}>
+                <Icon className="w-4 h-4" />
+              </a>
+            ))}
           </div>
+        </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-white font-semibold text-lg mb-6 relative">
-              Our Services
-              <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
-            </h3>
-            <ul className="space-y-3">
-              {[
-                "Cloud Solutions",
-                "Software Development", 
-                "AI & Machine Learning",
-                "Digital Marketing",
-                "Cybersecurity",
-                "E-commerce Platforms"
-              ].map((service, index) => (
-                <li key={index}>
-                  <a 
-                    href="#" 
-                    className="text-gray-300 hover:text-blue-400 text-sm transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Quick Links */}
+        <div data-aos="fade-up" data-aos-delay="80">
+          <h4 className="text-white font-bold text-sm mb-5 flex items-center gap-2" style={{ fontFamily:"'Outfit',sans-serif" }}>
+            Quick Links
+            <div className="flex-1 h-px" style={{ background:"linear-gradient(90deg,rgba(37,99,235,0.5),transparent)" }} />
+          </h4>
+          <ul className="space-y-2.5">
+            {["Home","About Us","Services","Solutions","Contact"].map((l, i) => (
+              <li key={i}>
+                <a href="#" className="text-slate-400 hover:text-white text-sm font-medium transition-all duration-200 flex items-center gap-2 group">
+                  <span className="w-0 group-hover:w-3 h-px bg-blue-400 transition-all duration-200 rounded-full" />
+                  {l}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-white font-semibold text-lg mb-6 relative">
-              Get In Touch
-              <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
-            </h3>
-            <div className="space-y-5">
-              <div className="flex items-start gap-4 group">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20 group-hover:bg-blue-500/20 group-hover:border-blue-400/50 transition-all duration-300">
-                    <Building2 className="w-6 h-6 text-blue-400" />
-                  </div>
+        {/* Services */}
+        <div data-aos="fade-up" data-aos-delay="160">
+          <h4 className="text-white font-bold text-sm mb-5 flex items-center gap-2" style={{ fontFamily:"'Outfit',sans-serif" }}>
+            Our Services
+            <div className="flex-1 h-px" style={{ background:"linear-gradient(90deg,rgba(37,99,235,0.5),transparent)" }} />
+          </h4>
+          <ul className="space-y-2.5">
+            {["Cloud Solutions","Software Development","AI & Machine Learning","Digital Marketing","Cybersecurity","E-commerce Platforms"].map((s, i) => (
+              <li key={i}>
+                <a href="#" className="text-slate-400 hover:text-white text-sm font-medium transition-all duration-200 flex items-center gap-2 group">
+                  <span className="w-0 group-hover:w-3 h-px bg-cyan-400 transition-all duration-200 rounded-full" />
+                  {s}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div data-aos="fade-up" data-aos-delay="240">
+          <h4 className="text-white font-bold text-sm mb-5 flex items-center gap-2" style={{ fontFamily:"'Outfit',sans-serif" }}>
+            Get In Touch
+            <div className="flex-1 h-px" style={{ background:"linear-gradient(90deg,rgba(37,99,235,0.5),transparent)" }} />
+          </h4>
+          <div className="space-y-3.5">
+            {[
+              { Icon:MapPin, color:"text-blue-400",   label:"Office", val:"Technology Hub, Innovation Center, Tech City" },
+              { Icon:Mail,   color:"text-cyan-400",   label:"Email",  val:"info@b2yinfy.com" },
+              { Icon:Phone,  color:"text-green-400",  label:"Phone",  val:"+1 (555) 012-3456" },
+              { Icon:Clock,  color:"text-purple-400", label:"Hours",  val:"Mon–Fri: 9AM – 6PM" },
+            ].map(({ Icon, color, label, val }, i) => (
+              <div key={i} className="flex items-start gap-3 group">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110"
+                  style={{ background:"rgba(255,255,255,0.06)", border:"1px solid rgba(255,255,255,0.1)" }}>
+                  <Icon className={`w-4 h-4 ${color}`} />
                 </div>
-                <div className="flex-1">
-                  <h4 className="text-white font-medium text-sm mb-1">Office Address</h4>
-                  <div className="text-gray-400 text-sm leading-relaxed">
-                    Technology Hub, Innovation Center<br />
-                    Digital Solutions Complex<br />
-                    Tech City, Business District
-                  </div>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4 group">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20 group-hover:bg-green-500/20 group-hover:border-green-400/50 transition-all duration-300">
-                    <MessageCircle className="w-6 h-6 text-green-400" />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-white font-medium text-sm mb-1">Email Us</h4>
-                  <a href="mailto:info@b2yinfy.com" className="text-gray-400 hover:text-green-400 text-sm transition-colors">
-                    info@b2yinfy.com
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4 group">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20 group-hover:bg-purple-500/20 group-hover:border-purple-400/50 transition-all duration-300">
-                    <Phone className="w-6 h-6 text-purple-400" />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-white font-medium text-sm mb-1">Call Us</h4>
-                  <a href="tel:+1-555-0123" className="text-gray-400 hover:text-purple-400 text-sm transition-colors">
-                    +1 (555) 012-3456
-                  </a>
+                <div>
+                  <p className="text-slate-500 text-[9px] uppercase tracking-[0.15em] font-bold mb-0.5">{label}</p>
+                  <p className="text-slate-300 text-xs font-medium">{val}</p>
                 </div>
               </div>
-              
-              <div className="flex items-center gap-4 group">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20 group-hover:bg-cyan-500/20 group-hover:border-cyan-400/50 transition-all duration-300">
-                    <Clock className="w-6 h-6 text-cyan-400" />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-white font-medium text-sm mb-1">Business Hours</h4>
-                  <div className="text-gray-400 text-sm">
-                    Mon - Fri: 9:00 AM - 6:00 PM
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-700/50 bg-black/20">
-        <div className="container mx-auto px-6 lg:px-24 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2 text-gray-400 text-sm">
-              <span>© 2026 B2Yinfy Technologies. Made with</span>
-              <Heart className="w-4 h-4 text-red-500 fill-current" />
-              <span>All rights reserved.</span>
-            </div>
-            <div className="flex gap-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
-            </div>
-          </div>
+      {/* Bottom bar */}
+      <div className="flex flex-col md:flex-row justify-between items-center gap-3 pt-6"
+        style={{ borderTop:"1px solid rgba(255,255,255,0.07)" }}>
+        <div className="flex items-center gap-2 text-slate-500 text-xs">
+          <span>© 2026 B2YINFY Technologies. Made with</span>
+          <Heart className="w-3.5 h-3.5 text-red-500 fill-current" />
+          <span>All rights reserved.</span>
+        </div>
+        <div className="flex gap-5">
+          {["Privacy Policy","Terms of Service","Cookie Policy"].map(l => (
+            <a key={l} href="#" className="text-slate-500 hover:text-white text-xs font-medium transition-colors">{l}</a>
+          ))}
         </div>
       </div>
-    </footer>
-  );
-};
+    </div>
+  </footer>
+);
 
 export default Footer;
+
+
+
+
+

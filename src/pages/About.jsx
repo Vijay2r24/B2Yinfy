@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+﻿import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Lightbulb, Star, Handshake, Target, Eye, Users, Award, Clock, CheckCircle } from "lucide-react";
 
@@ -259,3 +259,5 @@ const About = () => {
 };
 
 export default About;
+
+

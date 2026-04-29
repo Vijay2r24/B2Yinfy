@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+﻿import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Building2, MessageCircle, Phone, Clock, Mail, MapPin, Send, User, MessageSquare, CheckCircle } from "lucide-react";
 import { useState } from "react";
@@ -353,3 +353,5 @@ const Contact = () => {
 };
 
 export default Contact;
+
+

@@ -1,103 +1,115 @@
-﻿const btnStyle = {
-  background: "linear-gradient(135deg,#0ea5e9,#06b6d4)",
-  color: "#ffffff",
-  boxShadow: "0 4px 16px rgba(14,165,233,0.3)",
-};
+﻿import { TrendingUp, Globe, BookOpen, DollarSign, Briefcase, ArrowRight } from "lucide-react";
 
 const perks = [
-  { title: "Fast Growth",     desc: "Clear career paths with rapid advancement opportunities", color: "#0ea5e9",
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.82m5.84-2.56a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.82m2.56-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /></svg> },
-  { title: "Remote Friendly", desc: "Flexible hybrid work arrangements across global teams",   color: "#06b6d4",
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg> },
-  { title: "Learn & Grow",    desc: "Sponsored certifications and continuous learning budget",  color: "#0ea5e9",
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" /></svg> },
-  { title: "Great Pay",       desc: "Competitive compensation, equity, and performance bonuses", color: "#38bdf8",
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
+  { title:"Fast Growth",     desc:"Clear career paths with rapid advancement opportunities", color:"#2563eb", bg:"#eff6ff", border:"#bfdbfe", Icon: TrendingUp },
+  { title:"Remote Friendly", desc:"Flexible hybrid work arrangements across global teams",   color:"#0284c7", bg:"#f0f9ff", border:"#bae6fd", Icon: Globe      },
+  { title:"Learn & Grow",    desc:"Sponsored certifications and continuous learning budget",  color:"#0e7490", bg:"#ecfeff", border:"#a5f3fc", Icon: BookOpen   },
+  { title:"Great Pay",       desc:"Competitive compensation, equity, and performance bonuses",color:"#059669", bg:"#ecfdf5", border:"#a7f3d0", Icon: DollarSign },
 ];
 
 const openRoles = [
-  { title: "Senior Full Stack Developer", dept: "Engineering",    type: "Full-time" },
-  { title: "AI/ML Engineer",              dept: "Data Science",   type: "Full-time" },
-  { title: "Cloud Architect",             dept: "Infrastructure", type: "Full-time" },
+  { title:"Senior Full Stack Developer", dept:"Engineering",    type:"Full-time", hot:true  },
+  { title:"AI/ML Engineer",              dept:"Data Science",   type:"Full-time", hot:true  },
+  { title:"Cloud Architect",             dept:"Infrastructure", type:"Full-time", hot:false },
 ];
 
 const CareersSection = () => (
-  <section className="h-screen w-full flex items-center relative overflow-hidden section-dark" style={{ paddingTop:"72px" }}>
+  <section className="h-screen w-full flex items-center relative overflow-hidden"
+    style={{ paddingTop:"60px", background:"#ffffff" }}>
+
+    {/* Orbs */}
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <div className="absolute w-[600px] h-[600px] rounded-full animate-orb"
-        style={{ top: "-20%", right: "-5%", background: "radial-gradient(circle,rgba(14,165,233,0.1) 0%,transparent 65%)", filter: "blur(90px)" }} />
+        style={{ top:"-20%", right:"-5%", background:"radial-gradient(circle,rgba(37,99,235,0.07) 0%,transparent 65%)", filter:"blur(90px)" }} />
       <div className="absolute w-[400px] h-[400px] rounded-full animate-orb"
-        style={{ bottom: "-15%", left: "10%", background: "radial-gradient(circle,rgba(6,182,212,0.08) 0%,transparent 65%)", filter: "blur(70px)", animationDelay: "6s" }} />
+        style={{ bottom:"-15%", left:"8%", background:"radial-gradient(circle,rgba(6,182,212,0.06) 0%,transparent 65%)", filter:"blur(70px)", animationDelay:"6s" }} />
     </div>
     <div className="absolute inset-0 pointer-events-none"
-      style={{ backgroundImage: "radial-gradient(rgba(14,165,233,0.08) 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
+      style={{ backgroundImage:"radial-gradient(rgba(37,99,235,0.04) 1px,transparent 1px)", backgroundSize:"36px 36px" }} />
 
-    <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 xl:px-28 pt-4">
-      <div className="grid lg:grid-cols-2 gap-8 xl:gap-14 items-center">
+    <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 xl:px-28">
+      <div className="grid lg:grid-cols-2 gap-6 xl:gap-12 items-center">
 
         {/* Left */}
-        <div className="animate-slide-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-3" style={{ background:"linear-gradient(135deg,#dbeafe,#e0f2fe)", border:"1px solid #93c5fd" }}>
-            <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse-soft" />
-            <span className="text-sky-700 text-xs font-bold uppercase tracking-[0.15em]">Join Our Team</span>
+        <div>
+          <div data-aos="fade-down" data-aos-delay="0" className="section-label mb-3">
+            <Briefcase className="w-3.5 h-3.5 text-blue-600" />
+            Join Our Team
           </div>
 
-          <h2 className="mb-4 leading-tight" style={{ fontFamily: "'Outfit',sans-serif",
-            fontSize: "clamp(1.6rem,3vw,2.8rem)", fontWeight: 800, letterSpacing: "-0.025em" }}>
-            <span className="text-slate-900">Build the Future</span><br />
-            <span className="text-glow">With B2YINFY</span>
+          <h2 data-aos="fade-right" data-aos-delay="80"
+            className="mb-3 leading-[1.08]"
+            style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(1.5rem,2.8vw,2.8rem)", fontWeight:800, letterSpacing:"-0.015em" }}>
+            <span data-aos="fade-right" data-aos-delay="80" className="text-[#0f172a]" style={{ display:"block" }}>Build the Future</span>
+            <span data-aos="fade-right" data-aos-delay="160" className="text-gradient" style={{ display:"block" }}>With B2YINFY</span>
           </h2>
 
-          <p className="text-slate-700 text-sm leading-relaxed mb-3 max-w-md">
-            Join passionate technologists driving digital transformation. Work on real-world problems with cutting-edge technology.
+          <p data-aos="fade-up" data-aos-delay="220"
+            className="text-slate-500 text-sm leading-relaxed mb-4 max-w-md">
+            Join passionate technologists driving digital transformation. Work on real-world problems with cutting-edge technology and a team that cares.
           </p>
 
-          {/* Open roles — no white cards, use subtle colored rows */}
-          <div className="space-y-2 mb-3">
+          {/* Open roles */}
+          <div className="space-y-2 mb-4">
             {openRoles.map((r, i) => (
-              <div key={i} className="flex items-center justify-between px-4 py-3 rounded-xl group cursor-pointer transition-all duration-200 hover:bg-sky-50"
-                style={{ borderLeft:"3px solid #0ea5e9", background:"rgba(14,165,233,0.05)" }}>
-                <div>
-                  <p className="text-slate-900 text-sm font-semibold">{r.title}</p>
-                  <p className="text-slate-500 text-xs">{r.dept} · {r.type}</p>
+              <div key={i} data-aos="fade-right" data-aos-delay={230 + i * 75}
+                className="role-card flex items-center justify-between px-3.5 py-3 rounded-xl cursor-pointer"
+                style={{ background:"rgba(255,255,255,0.7)", border:"1px solid #e2e8f0" }}>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ background:"#eff6ff", border:"1px solid #bfdbfe" }}>
+                    <Briefcase className="w-3.5 h-3.5 text-blue-700" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <p className="text-slate-900 text-sm font-bold" style={{ fontFamily:"'Outfit',sans-serif" }}>{r.title}</p>
+                      {r.hot && (
+                        <span className="text-[9px] px-1.5 py-0.5 rounded-full font-bold text-white"
+                          style={{ background:"linear-gradient(135deg,#ef4444,#dc2626)" }}>HOT</span>
+                      )}
+                    </div>
+                    <p className="text-slate-400 text-xs font-medium">{r.dept} · {r.type}</p>
+                  </div>
                 </div>
-                <svg className="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-200" />
               </div>
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
-            <a href="#" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold transition-all duration-300 hover:brightness-125"
-              style={btnStyle}>
+          <div data-aos="fade-up" data-aos-delay="480" className="flex items-center gap-4">
+            <a href="#" className="btn-primary text-sm">
               View All Roles
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <ArrowRight className="w-4 h-4" />
             </a>
-            <span className="text-slate-700 text-sm">10+ open positions</span>
+            <span className="text-slate-400 text-sm font-medium">10+ open positions</span>
           </div>
         </div>
 
-        {/* Right â€” perks */}
-        <div className="animate-slide-right">
-          <div className="grid grid-cols-2 gap-3">
-            {perks.map((p, i) => (
-              <div key={i} className="rounded-2xl p-4 relative overflow-hidden group transition-all duration-300 hover:-translate-y-1"
-                style={{ background:"#ffffff", borderTop:`3px solid ${p.color}`, border:`1px solid ${p.color}25`, borderTopWidth:"3px", boxShadow:`0 2px 12px ${p.color}12` }}>
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl"
-                  style={{ background: `radial-gradient(circle at 30% 30%,${p.color}15 0%,transparent 70%)` }} />
-                <div className="absolute bottom-0 left-0 right-0 h-px"
-                  style={{ background: `linear-gradient(90deg,transparent,${p.color}50,transparent)` }} />
-                <div className="relative z-10">
-                  <div className="mb-3 p-2 rounded-xl w-fit" style={{ background:`${p.color}15`, color:p.color }}>{p.icon}</div>
-                  <h4 className="text-slate-900 text-sm font-bold mb-1.5" style={{ fontFamily: "'Outfit',sans-serif" }}>{p.title}</h4>
-                  <p className="text-slate-700 text-xs leading-relaxed">{p.desc}</p>
+        {/* Right — perks */}
+        <div className="grid grid-cols-2 gap-2.5">
+          {perks.map(({ title, desc, color, bg, border, Icon }, i) => (
+            <div key={i} data-aos="zoom-in-up" data-aos-delay={i * 90}
+              className="perk-card shimmer-card rounded-2xl relative overflow-hidden cursor-default"
+              style={{ background:"#ffffff", border:`1px solid ${color}18`, boxShadow:`0 4px 20px ${color}0e`,
+                padding:"clamp(12px,1.8vh,20px)" }}>
+              {/* Hover gradient */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background:`linear-gradient(135deg,${bg},transparent 70%)` }} />
+              {/* Top accent */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl"
+                style={{ background:`linear-gradient(90deg,${color},${color}40)` }} />
+              <div className="relative z-10">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center icon-bounce transition-transform duration-300 group-hover:scale-110"
+                  style={{ background:bg, border:`1px solid ${border}`, marginBottom:"clamp(8px,1.2vh,12px)" }}>
+                  <Icon className="w-5 h-5" style={{ color }} />
                 </div>
+                <h4 className="text-slate-900 text-sm font-bold mb-1 transition-colors duration-200 group-hover:text-blue-700"
+                  style={{ fontFamily:"'Outfit',sans-serif" }}>{title}</h4>
+                <p className="text-slate-500 leading-relaxed transition-colors duration-200 group-hover:text-slate-600"
+                  style={{ fontSize:"clamp(10px,1.1vw,12px)" }}>{desc}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -105,17 +117,6 @@ const CareersSection = () => (
 );
 
 export default CareersSection;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
