@@ -4,19 +4,19 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ProductsSection from "@/components/ProductsSection";
+import IndustriesSection from "@/components/IndustriesSection";
+import TechnologiesSection from "@/components/TechnologiesSection";
 import ClientsSection from "@/components/ClientsSection";
-import CareersSection from "@/components/CareersSection";
-import InvestorsSection from "@/components/InvestorsSection";
 import ContactSection from "@/components/ContactSection";
 
 const sections = [
-  { id: "hero",      label: "Home",       Component: HeroSection },
-  { id: "about",     label: "About",      Component: AboutSection },
-  { id: "products",  label: "Products",   Component: ProductsSection },
-  { id: "clients",   label: "Clients",    Component: ClientsSection },
-  { id: "careers",   label: "Careers",    Component: CareersSection },
-  { id: "investors", label: "Investors",  Component: InvestorsSection },
-  { id: "contact",   label: "Contact",    Component: ContactSection },
+  { id: "hero",          label: "Home",          Component: HeroSection },
+  { id: "about",         label: "About",         Component: AboutSection },
+  { id: "products",      label: "Products",      Component: ProductsSection },
+  { id: "industries",    label: "Industries",    Component: IndustriesSection },
+  { id: "technologies",  label: "Technologies",  Component: TechnologiesSection },
+  { id: "clients",       label: "Clients",       Component: ClientsSection },
+  { id: "contact",       label: "Contact",       Component: ContactSection },
 ];
 
 const Index = () => {
