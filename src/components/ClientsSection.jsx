@@ -44,8 +44,15 @@ const ClientsSection = () => (
             <Users className="w-3.5 h-3.5 text-blue-600" />
             Trusted By 50+ Companies
           </div>
-          <h2 data-aos="fade-up" data-aos-delay="60"
-            style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(1.4rem,2.5vw,2.6rem)", fontWeight:800, letterSpacing:"-0.015em", color:"#0f172a" }}>
+          <h2 data-aos="fade-right" data-aos-delay="100"
+            style={{ 
+              fontFamily:"'Outfit',sans-serif", 
+              fontSize:"clamp(1.4rem,2.5vw,2.6rem)", 
+              fontWeight:800, 
+              letterSpacing:"-0.015em", 
+              color:"#0f172a",
+              marginBottom: '16px',
+            }}>
             <span>Clients &amp; </span>
             <span className="text-gradient-warm">Testimonials</span>
           </h2>

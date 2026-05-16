@@ -45,10 +45,10 @@ const Header = () => {
               <img src="/logoPinkTransperant.c6af2d1c926f2e4ba7f1 (2).png" alt="B2YINFY"
                 className="h-9 w-auto transition-transform duration-300 group-hover:scale-105" />
             </div>
-            <div className="hidden sm:flex flex-col leading-none">
+            <div className="flex flex-col leading-none">
               <span className="font-black text-[13px] tracking-[0.06em] text-slate-900" style={{ fontFamily:"'Outfit',sans-serif" }}>B2YINFY</span>
-              <span className="text-[9px] font-semibold tracking-[0.08em]"
-                style={{ background:"linear-gradient(90deg,#2563eb,#06b6d4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+              <span className="text-[9px] font-semibold tracking-[0.08em] italic"
+                style={{ color:"#ff6b6b" }}>
                 you Believe We Achieve
               </span>
             </div>
@@ -65,16 +65,8 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA */}
+          {/* Menu Button */}
           <div className="flex items-center gap-2.5">
-            <a href="#" className="hidden lg:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-bold text-white transition-all duration-200"
-              style={{
-                background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
-                letterSpacing: "0.01em",
-              }}>
-              <Zap className="w-3.5 h-3.5" />
-              Get a Quote
-            </a>
             <button onClick={() => setOpen(true)} aria-label="Menu"
               className="w-10 h-10 rounded-xl flex flex-col justify-center items-center gap-[5px] transition-all duration-200 hover:bg-slate-100 group"
               style={{ border:"1px solid #e2e8f0" }}>
@@ -152,9 +144,6 @@ const Header = () => {
 
         {/* Drawer footer */}
         <div className="px-6 py-5" style={{ borderTop:"1px solid #e2e8f0" }}>
-          <a href="#" className="w-full flex items-center justify-center gap-2 py-3 rounded-full text-sm font-bold text-white btn-primary mb-3">
-            <Zap className="w-4 h-4" /> Get a Quote
-          </a>
           <p className="text-slate-400 text-[9px] uppercase tracking-[0.2em] text-center font-medium">
             © {new Date().getFullYear()} B2YINFY Technologies
           </p>

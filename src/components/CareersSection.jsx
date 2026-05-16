@@ -37,9 +37,15 @@ const CareersSection = () => (
             Join Our Team
           </div>
 
-          <h2 data-aos="fade-right" data-aos-delay="80"
+          <h2 data-aos="fade-right" data-aos-delay="100"
             className="mb-3 leading-[1.08]"
-            style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(1.5rem,2.8vw,2.8rem)", fontWeight:800, letterSpacing:"-0.015em" }}>
+            style={{ 
+              fontFamily:"'Outfit',sans-serif", 
+              fontSize:"clamp(1.5rem,2.8vw,2.8rem)", 
+              fontWeight:800, 
+              letterSpacing:"-0.015em",
+              marginBottom: '16px',
+            }}>
             <span data-aos="fade-right" data-aos-delay="80" className="text-[#0f172a]" style={{ display:"block" }}>Build the Future</span>
             <span data-aos="fade-right" data-aos-delay="160" className="text-gradient" style={{ display:"block" }}>With B2YINFY</span>
           </h2>

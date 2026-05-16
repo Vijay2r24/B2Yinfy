@@ -2,6 +2,7 @@
 import AOS from "aos";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
 import ProductsSection from "@/components/ProductsSection";
 import IndustriesSection from "@/components/IndustriesSection";
@@ -11,8 +12,9 @@ import ContactSection from "@/components/ContactSection";
 
 const sections = [
   { id: "hero",          label: "Home",          Component: HeroSection },
+  { id: "services",      label: "Services",      Component: ServicesSection },
   { id: "about",         label: "About",         Component: AboutSection },
-  { id: "products",      label: "Products",      Component: ProductsSection },
+  { id: "products",      label: "Our Work",      Component: ProductsSection },
   { id: "industries",    label: "Industries",    Component: IndustriesSection },
   { id: "technologies",  label: "Technologies",  Component: TechnologiesSection },
   { id: "clients",       label: "Clients",       Component: ClientsSection },

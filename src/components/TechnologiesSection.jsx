@@ -1,5 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Cpu, Zap, Code2, Cloud, Database, Brain, Smartphone, Layout } from "lucide-react";
+
+const useInView = () => {
+  const [isInView, setIsInView] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  return [ref, isInView];
+};
 
 const categories = [
   {
@@ -112,8 +140,13 @@ const LogoIcon = ({ logo, name, color, light }) => {
   );
 };
 
-const TechnologiesSection = () => (
-  <section className="h-screen w-full flex items-center relative overflow-hidden"
+const TechnologiesSection = () => {
+  const [sectionRef, isInView] = useInView();
+  
+  return (
+  <section 
+    ref={sectionRef}
+    className="h-screen w-full flex items-center relative overflow-hidden"
     style={{ paddingTop: "60px", background: "#ffffff" }}>
 
     {/* Dot grid */}
@@ -132,20 +165,53 @@ const TechnologiesSection = () => (
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <div data-aos="fade-down" data-aos-delay="0" className="section-label mb-2">
+          <div 
+            className="section-label mb-2"
+            style={{
+              opacity: isInView ? 1 : 0,
+              transform: isInView ? 'translateY(0)' : 'translateY(-20px)',
+              transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+          >
             <Cpu className="w-3.5 h-3.5 text-blue-600" />
             Tech Stack
           </div>
-          <h2 data-aos="fade-up" data-aos-delay="70"
-            style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(1.4rem,2.4vw,2.4rem)", fontWeight:800, letterSpacing:"-0.015em", color:"#0f172a" }}>
+          <h2 
+            data-aos="fade-right" 
+            data-aos-delay="100"
+            style={{ 
+              fontFamily:"'Outfit',sans-serif", 
+              fontSize:"clamp(1.4rem,2.4vw,2.4rem)", 
+              fontWeight:800, 
+              letterSpacing:"-0.015em", 
+              color:"#0f172a",
+              marginBottom: '16px',
+              opacity: isInView ? 1 : 0,
+              transform: isInView ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
+            }}>
             Technologies <span className="text-gradient">We Master</span>
           </h2>
-          <p data-aos="fade-up" data-aos-delay="130" className="text-slate-500 text-sm mt-0.5 font-medium">
+          <p 
+            className="text-slate-500 text-sm mt-0.5 font-medium"
+            style={{
+              opacity: isInView ? 1 : 0,
+              transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
+            }}
+          >
             Modern, battle-tested tools across every layer of the stack
           </p>
         </div>
         {/* Inline stats */}
-        <div data-aos="fade-left" data-aos-delay="100" className="hidden lg:flex items-center gap-6">
+        <div 
+          className="hidden lg:flex items-center gap-6"
+          style={{
+            opacity: isInView ? 1 : 0,
+            transform: isInView ? 'translateX(0)' : 'translateX(30px)',
+            transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s',
+          }}
+        >
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <p className="font-black text-xl leading-none" style={{ fontFamily:"'Outfit',sans-serif", color: s.color }}>{s.val}</p>
@@ -156,16 +222,17 @@ const TechnologiesSection = () => (
       </div>
 
       {/* ── 3×2 category grid ── */}
-      <div data-aos="fade-up" data-aos-delay="180"
-        className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         {categories.map((cat, ci) => (
           <div key={cat.label}
-            data-aos="fade-up" data-aos-delay={180 + ci * 50}
             className="rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 group"
             style={{
               background: "#fafbfc",
               border: "1.5px solid #e2e8f0",
               boxShadow: "0 2px 8px rgba(10,22,40,0.04)",
+              opacity: isInView ? 1 : 0,
+              transform: isInView ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
+              transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${0.4 + ci * 0.1}s`,
             }}
             onMouseEnter={e => {
               e.currentTarget.style.borderColor = cat.color + "40";
@@ -180,8 +247,15 @@ const TechnologiesSection = () => (
 
             {/* Category label */}
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                style={{ background: cat.light, border: `1.5px solid ${cat.color}30` }}>
+              <div 
+                className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ 
+                  background: cat.light, 
+                  border: `1.5px solid ${cat.color}30`,
+                  animation: isInView ? 'float 3s ease-in-out infinite' : 'none',
+                  animationDelay: `${ci * 0.3}s`,
+                }}
+              >
                 <cat.Icon className="w-3.5 h-3.5" style={{ color: cat.color }} />
               </div>
               <span className="text-xs font-black" style={{ fontFamily:"'Outfit',sans-serif", color: "#0f172a" }}>
@@ -200,8 +274,14 @@ const TechnologiesSection = () => (
       </div>
 
       {/* Ticker */}
-      <div data-aos="fade-up" data-aos-delay="400"
-        className="mt-4 overflow-hidden" style={{ opacity: 0.4 }}>
+      <div 
+        className="mt-4 overflow-hidden" 
+        style={{ 
+          opacity: isInView ? 0.4 : 0,
+          transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1s',
+        }}
+      >
         <div className="flex animate-ticker whitespace-nowrap">
           {[...Array(2)].map((_, r) => (
             <div key={r} className="flex flex-shrink-0">
@@ -216,6 +296,7 @@ const TechnologiesSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default TechnologiesSection;
