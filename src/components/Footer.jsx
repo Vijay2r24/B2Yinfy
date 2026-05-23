@@ -1,4 +1,5 @@
 ﻿import { Linkedin, Twitter, Facebook, Instagram, ArrowUpRight, Heart, MapPin, Mail, Phone, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => (
   <footer style={{ background:"#0a1628" }} className="text-white">
@@ -41,7 +42,7 @@ const Footer = () => (
 
         {/* Quick Links */}
         <div data-aos="fade-up" data-aos-delay="80">
-          <h4 className="text-white font-bold text-sm mb-5 flex items-center gap-2" style={{ fontFamily:"'Outfit',sans-serif" }}>
+          <h4 className="font-heading text-white font-bold text-sm mb-5 flex items-center gap-2">
             Quick Links
             <div className="flex-1 h-px" style={{ background:"linear-gradient(90deg,rgba(37,99,235,0.5),transparent)" }} />
           </h4>
@@ -59,7 +60,7 @@ const Footer = () => (
 
         {/* Services */}
         <div data-aos="fade-up" data-aos-delay="160">
-          <h4 className="text-white font-bold text-sm mb-5 flex items-center gap-2" style={{ fontFamily:"'Outfit',sans-serif" }}>
+          <h4 className="font-heading text-white font-bold text-sm mb-5 flex items-center gap-2">
             Our Services
             <div className="flex-1 h-px" style={{ background:"linear-gradient(90deg,rgba(37,99,235,0.5),transparent)" }} />
           </h4>
@@ -77,7 +78,7 @@ const Footer = () => (
 
         {/* Contact */}
         <div data-aos="fade-up" data-aos-delay="240">
-          <h4 className="text-white font-bold text-sm mb-5 flex items-center gap-2" style={{ fontFamily:"'Outfit',sans-serif" }}>
+          <h4 className="font-heading text-white font-bold text-sm mb-5 flex items-center gap-2">
             Get In Touch
             <div className="flex-1 h-px" style={{ background:"linear-gradient(90deg,rgba(37,99,235,0.5),transparent)" }} />
           </h4>
@@ -112,9 +113,9 @@ const Footer = () => (
           <span>All rights reserved.</span>
         </div>
         <div className="flex gap-5">
-          {["Privacy Policy","Terms of Service","Cookie Policy"].map(l => (
-            <a key={l} href="#" className="text-slate-500 hover:text-white text-xs font-medium transition-colors">{l}</a>
-          ))}
+          <Link to="/privacy-policy" className="text-slate-500 hover:text-white text-xs font-medium transition-colors">Privacy Policy</Link>
+          <Link to="/terms-of-service" className="text-slate-500 hover:text-white text-xs font-medium transition-colors">Terms of Service</Link>
+          <a href="#" className="text-slate-500 hover:text-white text-xs font-medium transition-colors">Cookie Policy</a>
         </div>
       </div>
     </div>

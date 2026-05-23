@@ -34,7 +34,7 @@ const useInView = () => {
 const pillars = [
   {
     id: "products",
-    title: "Products",
+    title: "Web Applications",
     tagline: "Platforms we ship",
     desc: "Enterprise portals, SaaS products, and internal tools — designed, built, and maintained for scale and reliability.",
     points: [
@@ -145,12 +145,8 @@ const ProductsSection = () => {
             <h2
               data-aos="fade-right"
               data-aos-delay="100"
+              className="heading-section"
               style={{
-                fontFamily: "'Outfit',sans-serif",
-                fontSize: "clamp(1.35rem,2.35vw,2.35rem)",
-                fontWeight: 800,
-                letterSpacing: "-0.02em",
-                color: "#0f172a",
                 opacity: isInView ? 1 : 0,
                 transform: isInView ? 'translateY(0)' : 'translateY(30px)',
                 transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
@@ -162,7 +158,7 @@ const ProductsSection = () => {
               <span>Services</span>
             </h2>
             <p
-              className="text-slate-500 text-sm mt-1 font-medium max-w-2xl"
+              className="text-body mt-1 max-w-2xl"
               style={{
                 opacity: isInView ? 1 : 0,
                 transform: isInView ? 'translateY(0)' : 'translateY(20px)',
@@ -199,7 +195,7 @@ const ProductsSection = () => {
               transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${0.3 + idx * 0.15}s`,
             }}
           >
-            <div className="relative shrink-0 aspect-[5/3] max-h-[min(22vh,180px)] overflow-hidden bg-slate-100">
+            <div className="relative shrink-0 aspect-[5/3] max-h-[min(18vh,160px)] overflow-hidden bg-slate-100">
               <img
                 src={p.img}
                 alt={p.title}
@@ -230,7 +226,7 @@ const ProductsSection = () => {
             </div>
 
             <div
-              className="flex flex-col flex-1 min-h-0 p-3.5 md:p-4 border-t border-slate-100"
+              className="flex flex-col flex-1 p-3.5 md:p-4 border-t border-slate-100 overflow-hidden"
               style={{
                 background: `linear-gradient(180deg, ${p.light} 0%, #ffffff 70%)`,
               }}
@@ -238,19 +234,13 @@ const ProductsSection = () => {
               <p className="text-slate-500 text-[9px] font-bold uppercase tracking-[0.12em] mb-0.5">
                 {p.tagline}
               </p>
-              <h3
-                className="text-slate-900 font-black leading-tight mb-2"
-                style={{
-                  fontFamily: "'Outfit',sans-serif",
-                  fontSize: "clamp(13px,1.2vw,15px)",
-                }}
-              >
+              <h3 className="heading-card-sm mb-1.5 leading-tight">
                 {p.title}
               </h3>
-              <p className="text-slate-600 text-[11px] leading-relaxed mb-3 flex-1">
+              <p className="text-body-sm leading-relaxed mb-2 flex-1">
                 {p.desc}
               </p>
-              <ul className="space-y-1.5 mb-3">
+              <ul className="space-y-1 mb-2">
                 {p.points.map((pt) => (
                   <li key={pt} className="flex items-start gap-2">
                     <CheckCircle2
@@ -265,10 +255,10 @@ const ProductsSection = () => {
               </ul>
               <a
                 href="#"
-                className="mt-auto inline-flex items-center gap-1.5 text-[10px] font-bold transition-all duration-300 group-hover:gap-2.5"
+                className="mt-auto inline-flex items-center gap-1.5 text-xs font-bold transition-all duration-300 group-hover:gap-2.5 shrink-0"
                 style={{ color: p.color }}
               >
-                Learn more <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" />
+                Learn more <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </div>
           </article>

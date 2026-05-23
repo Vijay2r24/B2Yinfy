@@ -1,18 +1,12 @@
 ﻿import { Quote, Users, ArrowRight } from "lucide-react";
 
 const clients = [
-  { src:"https://avccpalmdale.com/B2B/img/APMDC.png",  w:60  },
-  { src:"https://avccpalmdale.com/B2B/img/caxton.png", w:95  },
-  { src:"https://avccpalmdale.com/B2B/img/1.png",      w:95  },
-  { src:"https://avccpalmdale.com/B2B/img/2.png",      w:85  },
-  { src:"https://avccpalmdale.com/B2B/img/3.png",      w:90  },
-  { src:"https://avccpalmdale.com/B2B/img/4.png",      w:70  },
-  { src:"https://avccpalmdale.com/B2B/img/5.png",      w:110 },
-  { src:"https://avccpalmdale.com/B2B/img/6.png",      w:110 },
-  { src:"https://avccpalmdale.com/B2B/img/15.png",     w:85  },
-  { src:"https://avccpalmdale.com/B2B/img/16.png",     w:120 },
-  { src:"https://avccpalmdale.com/B2B/img/17.png",     w:90  },
-  { src:"https://avccpalmdale.com/B2B/img/18.png",     w:85  },
+  { src:"/nexa.0e45b056d79ed237b2db.jpg",                    name:"Nexa Link",              w:100 },
+  { src:"/sustaine.85695b6c6459bdeab958.jpg",                 name:"SustainEdge Consulting", w:110 },
+  { src:"/Mcdmf1 (1).00b9ba7237327dc1857f.jpg",              name:"MCDMF",                  w:110 },
+  { src:"/MantraLabs.887d2198b752cb6bf5d5.jpg",               name:"Mantra Labs",            w:110 },
+  { src:"/loudstier.b1c2eb3d731a63efc574.jpg",                name:"Cloudstier Solutions",   w:120 },
+  { src:"/geeks.e592e136724c2683f3d0c9f114799f3a.svg",        name:"Nerds & Geeks",          w:110 },
 ];
 
 const testimonials = [
@@ -45,14 +39,8 @@ const ClientsSection = () => (
             Trusted By 50+ Companies
           </div>
           <h2 data-aos="fade-right" data-aos-delay="100"
-            style={{ 
-              fontFamily:"'Outfit',sans-serif", 
-              fontSize:"clamp(1.4rem,2.5vw,2.6rem)", 
-              fontWeight:800, 
-              letterSpacing:"-0.015em", 
-              color:"#0f172a",
-              marginBottom: '16px',
-            }}>
+            className="heading-section"
+            style={{ marginBottom: '16px' }}>
             <span>Clients &amp; </span>
             <span className="text-gradient-warm">Testimonials</span>
           </h2>
@@ -64,23 +52,27 @@ const ClientsSection = () => (
         </a>
       </div>
 
-      {/* Logo grid */}
+      {/* Logo scroll */}
       <div data-aos="fade-up" data-aos-delay="140"
         className="mb-3 lg:mb-4 rounded-2xl overflow-hidden"
         style={{ background:"#ffffff", border:"1px solid #e2e8f0", boxShadow:"0 4px 20px rgba(37,99,235,0.06)" }}>
-        <div className="grid grid-cols-6 divide-x divide-y" style={{ borderColor:"#f1f5f9" }}>
-          {clients.map((c, i) => (
-            <div key={i} data-aos="zoom-in" data-aos-delay={160 + i * 35}
-              className="logo-cell group flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-blue-50/70"
-              style={{ minHeight:"clamp(44px,6vh,64px)", padding:"clamp(6px,1.2vh,16px)" }}>
-              <img src={c.src} alt={`Client ${i+1}`} loading="lazy"
-                className="object-contain transition-all duration-400 filter grayscale group-hover:grayscale-0 group-hover:scale-110"
-                style={{ width:c.w * 0.85, maxWidth:"100%", opacity:0.6 }}
-                onMouseEnter={e => e.target.style.opacity="1"}
-                onMouseLeave={e => e.target.style.opacity="0.6"}
-              />
-            </div>
-          ))}
+        <div className="overflow-hidden" style={{ padding:"clamp(16px,2.5vh,32px) 0" }}>
+          <div className="flex animate-ticker whitespace-nowrap">
+            {[...Array(3)].map((_, r) => (
+              <div key={r} className="flex flex-shrink-0 items-center gap-10 px-5">
+                {clients.map((c, i) => (
+                  <div key={`${r}-${i}`}
+                    className="flex-shrink-0 flex items-center justify-center group cursor-pointer transition-all duration-300 hover:scale-110"
+                    style={{ width:"clamp(120px,14vw,180px)", height:"clamp(60px,8vh,90px)" }}>
+                    <img src={c.src} alt={c.name} loading="lazy"
+                      className="object-contain max-h-full transition-all duration-400 group-hover:scale-110"
+                      style={{ width:c.w, maxWidth:"100%" }}
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -37,13 +37,8 @@ const InvestorsSection = () => (
             Investor Relations
           </div>
           <h2 data-aos="fade-right" data-aos-delay="100"
-            style={{ 
-              fontFamily:"'Outfit',sans-serif", 
-              fontSize:"clamp(1.5rem,2.8vw,2.8rem)", 
-              fontWeight:800, 
-              letterSpacing:"-0.015em",
-              marginBottom: '16px',
-            }}>
+            className="heading-section"
+            style={{ marginBottom: '16px' }}>
             <span className="text-[#0f172a]">Investor </span>
             <span className="text-gradient-warm">Central</span>
           </h2>

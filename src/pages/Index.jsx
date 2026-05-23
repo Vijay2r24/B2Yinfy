@@ -27,6 +27,12 @@ const Index = () => {
   const [overlayDir, setOverlayDir] = useState("down");
   const locked = useRef(false);
 
+  // Lock body scroll only on this page
+  useEffect(() => {
+    document.body.classList.add("overflow-locked");
+    return () => document.body.classList.remove("overflow-locked");
+  }, []);
+
   const goTo = (next) => {
     if (locked.current || next === current || next < 0 || next >= sections.length) return;
     locked.current = true;

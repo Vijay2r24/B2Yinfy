@@ -207,12 +207,8 @@ const IndustriesSection = () => {
             <h2
               data-aos="fade-right"
               data-aos-delay="100"
+              className="heading-section"
               style={{
-                fontFamily: "'Outfit',sans-serif",
-                fontSize: "clamp(1.5rem,2.5vw,2.5rem)",
-                fontWeight: 800,
-                letterSpacing: "-0.02em",
-                color: "#0f172a",
                 opacity: isInView ? 1 : 0,
                 transform: isInView ? 'translateY(0)' : 'translateY(30px)',
                 transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
@@ -222,7 +218,7 @@ const IndustriesSection = () => {
               Built for <span className="text-gradient">Every Industry</span>
             </h2>
             <p
-              className="text-slate-600 text-base font-medium max-w-2xl"
+              className="text-body max-w-2xl"
               style={{
                 opacity: isInView ? 1 : 0,
                 transform: isInView ? 'translateY(0)' : 'translateY(20px)',
@@ -349,16 +345,10 @@ const IndustriesSection = () => {
                     <p className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.15em] mb-1.5">
                       {ind.short}
                     </p>
-                    <h3
-                      className="text-slate-900 font-black leading-tight mb-2"
-                      style={{
-                        fontFamily: "'Outfit',sans-serif",
-                        fontSize: "clamp(13px,1.25vw,15px)",
-                      }}
-                    >
+                    <h3 className="heading-card-sm mb-2">
                       {ind.title}
                     </h3>
-                    <p className="text-slate-600 text-xs leading-relaxed line-clamp-2 flex-1 mb-3">
+                    <p className="text-body-sm leading-relaxed line-clamp-2 flex-1 mb-3">
                       {ind.desc}
                     </p>
                     <div 

@@ -89,7 +89,7 @@ const LogoCell = ({ name, logo, delay, isInView }) => {
         onError={e => { e.target.style.display = "none"; }}
       />
       <span className="font-semibold text-slate-500 mt-1 text-center leading-tight"
-        style={{ fontSize: "clamp(7px,0.7vw,9px)" }}>{name}</span>
+        style={{ fontFamily: "'Inter',sans-serif", fontSize: "clamp(8px,0.75vw,10px)" }}>{name}</span>
     </div>
   );
 };
@@ -135,14 +135,10 @@ const TechnologiesSection = () => {
 
             {/* Quote heading */}
             <h2
+              className="heading-section"
               style={{
-                fontFamily: "'Outfit',sans-serif",
-                fontSize: "clamp(1.3rem,2.2vw,2.2rem)",
-                fontWeight: 800,
-                letterSpacing: "-0.02em",
-                color: "#0f172a",
                 lineHeight: 1.2,
-                marginBottom: "0.6rem",
+                marginBottom: "0.75rem",
                 opacity: isInView ? 1 : 0,
                 transform: isInView ? "translateX(0)" : "translateX(-40px)",
                 transition: "all 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s",
@@ -155,9 +151,8 @@ const TechnologiesSection = () => {
 
             {/* Description */}
             <p
-              className="text-slate-500 leading-relaxed mb-5 max-w-md"
+              className="text-body leading-relaxed mb-5 max-w-md"
               style={{
-                fontSize: "clamp(10px,1vw,12px)",
                 opacity: isInView ? 1 : 0,
                 transform: isInView ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s",
@@ -170,7 +165,7 @@ const TechnologiesSection = () => {
             </p>
 
             {/* Feature list */}
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               {features.map((f, i) => (
                 <div
                   key={f.title}
@@ -182,16 +177,16 @@ const TechnologiesSection = () => {
                   }}
                 >
                   <div
-                    className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+                    className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
                     style={{ background: f.color + "15", border: `1.5px solid ${f.color}30` }}
                   >
-                    <f.Icon className="w-3 h-3" style={{ color: f.color }} strokeWidth={2} />
+                    <f.Icon className="w-4 h-4" style={{ color: f.color }} strokeWidth={2} />
                   </div>
                   <div>
-                    <p className="font-bold mb-0.5" style={{ fontSize: "11px", color: f.color, fontFamily: "'Outfit',sans-serif" }}>
+                    <p className="font-heading font-bold mb-0.5" style={{ fontSize: "13px", color: f.color }}>
                       {f.title}
                     </p>
-                    <p className="text-slate-500 leading-relaxed" style={{ fontSize: "10px" }}>{f.desc}</p>
+                    <p className="text-body-sm leading-relaxed">{f.desc}</p>
                   </div>
                 </div>
               ))}

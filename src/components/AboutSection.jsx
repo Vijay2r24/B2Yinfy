@@ -49,9 +49,9 @@ const useInView = () => {
 
 const stats = [
   { val: 50, suffix: "+", label: "Happy clients", color: "#2563eb" },
-  { val: 5, suffix: "+", label: "Years experience", color: "#0284c7" },
-  { val: 100, suffix: "+", label: "Projects delivered", color: "#0e7490" },
-  { val: 10, suffix: "+", label: "Tech partners", color: "#1d4ed8" },
+  { val: 5, suffix: "+", label: "Years experience", color: "#059669" },
+  { val: 100, suffix: "+", label: "Projects delivered", color: "#d97706" },
+  { val: 10, suffix: "+", label: "Tech partners", color: "#7c3aed" },
 ];
 
 const highlights = [
@@ -127,12 +127,8 @@ const AboutSection = () => {
             <h2
               data-aos="fade-right"
               data-aos-delay="100"
+              className="heading-section"
               style={{
-                fontFamily: "'Outfit',sans-serif",
-                fontSize: "clamp(1.5rem,2.5vw,2.5rem)",
-                fontWeight: 800,
-                letterSpacing: "-0.02em",
-                color: "#0f172a",
                 opacity: isInView ? 1 : 0,
                 transform: isInView ? 'translateY(0)' : 'translateY(30px)',
                 transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
@@ -254,13 +250,8 @@ const AboutSection = () => {
                       }}
                     >
                       <div
-                        className="font-black tabular-nums leading-none mb-1"
-                        style={{
-                          fontFamily: "'Outfit',sans-serif",
-                          fontSize: "clamp(1.75rem,4vw,2.35rem)",
-                          color: s.color,
-                          letterSpacing: "-0.03em",
-                        }}
+                        className="heading-stat tabular-nums mb-1"
+                        style={{ color: s.color }}
                       >
                         {counts[i]}
                         <span className="text-[0.45em] font-black align-super ml-px">
