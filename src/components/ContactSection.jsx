@@ -18,8 +18,8 @@ const locations = [
 ];
 
 const ContactSection = () => (
-  <section className="h-screen w-full flex items-center relative overflow-hidden"
-    style={{ paddingTop: "60px", background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)" }}>
+  <section className="min-h-screen w-full flex items-center relative overflow-hidden"
+    style={{ paddingTop: "80px", paddingBottom: "40px", background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)" }}>
 
     {/* Background effects */}
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -32,7 +32,7 @@ const ContactSection = () => (
       style={{ backgroundImage: "radial-gradient(#dbeafe 1.5px,transparent 1.5px)", backgroundSize: "32px 32px", opacity: 0.3 }} />
 
     <div className="relative z-10 w-full px-6 md:px-10 lg:px-16 xl:px-20">
-      <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
 
         {/* ── LEFT: Locations ── */}
         <div>

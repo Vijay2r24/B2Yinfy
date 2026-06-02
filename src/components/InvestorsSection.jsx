@@ -1,4 +1,4 @@
-﻿import { TrendingUp, FileText, BarChart2, Building2, ArrowRight, Download, Activity } from "lucide-react";
+import { TrendingUp, FileText, BarChart2, Building2, ArrowRight, Download, Activity } from "lucide-react";
 
 const reports = [
   { label:"Results",    text:"Annual Report - 2025",          href:"https://avccpalmdale.com/B2B/Investors_Column/AnnualReport_2025.pdf", Icon: BarChart2  },
@@ -14,8 +14,8 @@ const highlights = [
 ];
 
 const InvestorsSection = () => (
-  <section className="h-screen w-full flex items-center relative overflow-hidden"
-    style={{ paddingTop:"60px", background:"#ffffff" }}>
+  <section className="min-h-screen w-full flex items-center relative overflow-hidden"
+    style={{ paddingTop:"80px", paddingBottom:"40px", background:"#ffffff" }}>
 
     {/* Dot pattern */}
     <div className="absolute inset-0 pointer-events-none"
@@ -49,7 +49,7 @@ const InvestorsSection = () => (
         </a>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
         {/* Left */}
         <div className="flex flex-col gap-2.5">

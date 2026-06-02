@@ -94,8 +94,8 @@ const ServicesSection = () => {
   return (
   <section
     ref={sectionRef}
-    className="h-screen w-full flex flex-col relative overflow-hidden"
-    style={{ paddingTop: "60px", background: "#ffffff" }}
+    className="min-h-screen w-full flex flex-col relative overflow-hidden"
+    style={{ paddingTop: "80px", paddingBottom: "40px", background: "#ffffff" }}
   >
     {/* Match About / Industries: light dots + soft orb */}
     <div
@@ -121,7 +121,7 @@ const ServicesSection = () => {
       />
     </div>
 
-    <div className="relative z-10 flex flex-col h-full min-h-0 px-6 md:px-12 lg:px-16 xl:px-24 py-5 md:py-6">
+    <div className="relative z-10 flex flex-col flex-1 min-h-0 px-4 md:px-10 lg:px-16 xl:px-20 py-4 md:py-6">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-4 md:mb-5 shrink-0">
         <div>
           <div
@@ -164,7 +164,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      <div className="flex-1 min-h-0 grid md:grid-cols-3 gap-3 md:gap-4 items-stretch">
+      <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 items-stretch">
         {featuredServices.map((s, idx) => (
           <article
             key={s.id}

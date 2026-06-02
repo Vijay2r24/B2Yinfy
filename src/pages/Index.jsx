@@ -9,6 +9,7 @@ import IndustriesSection from "@/components/IndustriesSection";
 import TechnologiesSection from "@/components/TechnologiesSection";
 import ClientsSection from "@/components/ClientsSection";
 import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 const sections = [
   { id: "hero",          label: "Home",          Component: HeroSection },
@@ -21,17 +22,33 @@ const sections = [
   { id: "contact",       label: "Contact",       Component: ContactSection },
 ];
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+};
+
 const Index = () => {
   const [current, setCurrent] = useState(0);
   const [overlayActive, setOverlayActive] = useState(false);
   const [overlayDir, setOverlayDir] = useState("down");
   const locked = useRef(false);
+  const isMobile = useIsMobile();
 
-  // Lock body scroll only on this page
+  // Lock body scroll only on desktop
   useEffect(() => {
-    document.body.classList.add("overflow-locked");
+    if (!isMobile) {
+      document.body.classList.add("overflow-locked");
+    } else {
+      document.body.classList.remove("overflow-locked");
+    }
     return () => document.body.classList.remove("overflow-locked");
-  }, []);
+  }, [isMobile]);
 
   const goTo = (next) => {
     if (locked.current || next === current || next < 0 || next >= sections.length) return;
@@ -43,7 +60,9 @@ const Index = () => {
     setTimeout(() => { locked.current = false; AOS.refreshHard(); }, 1000);
   };
 
+  // Mouse wheel navigation — desktop only
   useEffect(() => {
+    if (isMobile) return;
     const onWheel = (e) => {
       e.preventDefault();
       if (e.deltaY > 0) goTo(current + 1);
@@ -51,21 +70,41 @@ const Index = () => {
     };
     window.addEventListener("wheel", onWheel, { passive: false });
     return () => window.removeEventListener("wheel", onWheel);
-  }, [current]);
+  }, [current, isMobile]);
 
+  // Keyboard navigation — desktop only
   useEffect(() => {
+    if (isMobile) return;
     const onKey = (e) => {
       if (e.key === "ArrowDown" || e.key === "PageDown") { e.preventDefault(); goTo(current + 1); }
       if (e.key === "ArrowUp"   || e.key === "PageUp")   { e.preventDefault(); goTo(current - 1); }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [current]);
+  }, [current, isMobile]);
 
+  // ─── MOBILE: Normal scrollable page ───
+  if (isMobile) {
+    return (
+      <div className="w-full min-h-screen" style={{ background: "#ffffff" }}>
+        <Header />
+        <main>
+          {sections.map(({ id, Component }) => (
+            <div key={id} id={id}>
+              <Component />
+            </div>
+          ))}
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // ─── DESKTOP: Full-page scroll system ───
   const { Component: ActiveSection } = sections[current];
 
   return (
-    <div className="h-screen w-screen overflow-hidden relative" style={{ background:"#ffffff" }}>
+    <div className="h-screen w-screen overflow-hidden relative" style={{ background: "#ffffff" }}>
       <Header currentSection={current} onNavigate={goTo} />
 
       {/* Cinematic overlay transition */}
@@ -103,9 +142,9 @@ const Index = () => {
 
       {/* Bottom counter */}
       <div className="fixed bottom-5 right-5 z-40 flex items-center gap-2">
-        <span className="text-slate-700 font-black text-xs" style={{ fontFamily:"'Outfit',sans-serif" }}>{String(current + 1).padStart(2,"0")}</span>
+        <span className="text-slate-700 font-black text-xs" style={{ fontFamily: "'Outfit',sans-serif" }}>{String(current + 1).padStart(2, "0")}</span>
         <div className="w-8 h-px bg-slate-300" />
-        <span className="text-slate-400 text-xs font-medium">{String(sections.length).padStart(2,"0")}</span>
+        <span className="text-slate-400 text-xs font-medium">{String(sections.length).padStart(2, "0")}</span>
       </div>
 
       {/* Scroll hint */}
@@ -120,8 +159,3 @@ const Index = () => {
 };
 
 export default Index;
-
-
-
-
-

@@ -14,8 +14,8 @@ const openRoles = [
 ];
 
 const CareersSection = () => (
-  <section className="h-screen w-full flex items-center relative overflow-hidden"
-    style={{ paddingTop:"60px", background:"#ffffff" }}>
+  <section className="min-h-screen w-full flex items-center relative overflow-hidden"
+    style={{ paddingTop:"80px", paddingBottom:"40px", background:"#ffffff" }}>
 
     {/* Orbs */}
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -28,7 +28,7 @@ const CareersSection = () => (
       style={{ backgroundImage:"radial-gradient(rgba(37,99,235,0.04) 1px,transparent 1px)", backgroundSize:"36px 36px" }} />
 
     <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 xl:px-28">
-      <div className="grid lg:grid-cols-2 gap-6 xl:gap-12 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-12 items-center">
 
         {/* Left */}
         <div>

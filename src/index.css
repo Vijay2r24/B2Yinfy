@@ -103,7 +103,7 @@
   /* Section title — used on every section (Services, About, Industries, etc.) */
   .heading-section {
     font-family: 'Outfit', sans-serif;       /* ← Change heading font here */
-    font-size: clamp(1.5rem, 2.5vw, 2.5rem); /* ← Min 1.5rem, Max 2.5rem */
+    font-size: clamp(1.3rem, 2.5vw, 2.5rem); /* ← Min 1.3rem, Max 2.5rem */
     font-weight: 800;                        /* ← Bold weight */
     letter-spacing: -0.02em;
     line-height: 1.15;
@@ -311,12 +311,12 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 11px 24px;
+    padding: clamp(8px, 1.2vh, 11px) clamp(16px, 2vw, 24px);
     border-radius: 999px;
     background: #2563eb;
     color: #ffffff;
     font-weight: 700;
-    font-size: 13.5px;
+    font-size: clamp(12px, 1.2vw, 13.5px);
     font-family: 'Inter', sans-serif;
     transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
     box-shadow: 0 2px 10px rgba(37,99,235,0.28), 0 1px 3px rgba(37,99,235,0.15);
@@ -335,12 +335,12 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 22px;
+    padding: clamp(8px, 1.2vh, 10px) clamp(14px, 1.8vw, 22px);
     border-radius: 999px;
     background: transparent;
     color: #1d4ed8;
     font-weight: 600;
-    font-size: 13.5px;
+    font-size: clamp(12px, 1.2vw, 13.5px);
     border: 1.5px solid #bfdbfe;
     transition: all .2s ease;
     cursor: pointer;

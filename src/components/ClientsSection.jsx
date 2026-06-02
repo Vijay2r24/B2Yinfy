@@ -16,8 +16,8 @@ const testimonials = [
 ];
 
 const ClientsSection = () => (
-  <section className="h-screen w-full flex items-center relative overflow-hidden"
-    style={{ paddingTop:"60px", background:"#ffffff" }}>
+  <section className="min-h-screen w-full flex items-center relative overflow-hidden"
+    style={{ paddingTop:"80px", paddingBottom:"40px", background:"#ffffff" }}>
 
     {/* Dot pattern */}
     <div className="absolute inset-0 pointer-events-none"
@@ -77,7 +77,7 @@ const ClientsSection = () => (
       </div>
 
       {/* Testimonials */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {testimonials.map((t, i) => (
           <div key={i} data-aos="fade-up" data-aos-delay={280 + i * 110}
             className="testimonial-card shimmer-card rounded-2xl relative overflow-hidden cursor-default"

@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Zap, Shield, Globe, Star, Award, CheckCircle } from "lucide-react";
 
 const useCounter = (target) => {
@@ -71,8 +71,8 @@ const AboutSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="h-screen w-full flex items-center relative overflow-hidden"
-      style={{ paddingTop: "80px", background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)" }}
+      className="min-h-screen w-full flex items-center relative overflow-hidden"
+      style={{ paddingTop: "80px", paddingBottom: "40px", background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)" }}
     >
       <div
         className="absolute inset-0 pointer-events-none"

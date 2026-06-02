@@ -103,26 +103,30 @@ const useInView = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) setIsInView(true); },
       { threshold: 0.1 }
     );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
+    if (ref.current) observer.observe(ref.current);
+    return () => { if (ref.current) observer.unobserve(ref.current); };
   }, []);
 
   return [ref, isInView];
+};
+
+const useVisibleCount = () => {
+  const [visible, setVisible] = useState(4);
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 640) setVisible(1);
+      else if (w < 1024) setVisible(2);
+      else setVisible(4);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return visible;
 };
 
 const IndustriesSection = () => {
@@ -130,8 +134,9 @@ const IndustriesSection = () => {
   const [current, setCurrent] = useState(0);
   const [isAuto, setIsAuto] = useState(true);
   const [sectionRef, isInView] = useInView();
+  const VISIBLE = useVisibleCount();
   const timer = useRef(null);
-  const maxIdx = industries.length - VISIBLE;
+  const maxIdx = Math.max(0, industries.length - VISIBLE);
 
   const next = () => setCurrent((p) => Math.min(p + 1, maxIdx));
   const prev = () => setCurrent((p) => Math.max(p - 1, 0));
@@ -153,8 +158,8 @@ const IndustriesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="h-screen w-full flex items-center relative overflow-hidden"
-      style={{ paddingTop: "80px", background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)" }}
+      className="min-h-screen w-full flex items-center relative overflow-hidden"
+      style={{ paddingTop: "80px", paddingBottom: "40px", background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)" }}
     >
       <div
         className="absolute inset-0 pointer-events-none"
@@ -190,55 +195,58 @@ const IndustriesSection = () => {
         />
       </div>
 
-      <div className="relative z-10 w-full px-6 md:px-10 lg:px-16 xl:px-20">
-        <div className="flex items-end justify-between mb-5">
-          <div>
-            <div
-              className="section-label mb-2.5"
-              style={{
-                opacity: isInView ? 1 : 0,
-                transform: isInView ? 'translateY(0)' : 'translateY(-20px)',
-                transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-              }}
-            >
-              <TrendingUp className="w-3.5 h-3.5 text-blue-600" />
-              Industries We Serve
-            </div>
-            <h2
-              data-aos="fade-right"
-              data-aos-delay="100"
-              className="heading-section"
-              style={{
-                opacity: isInView ? 1 : 0,
-                transform: isInView ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
-                marginBottom: '16px',
-              }}
-            >
-              Built for <span className="text-gradient">Every Industry</span>
-            </h2>
-            <p
-              className="text-body max-w-2xl"
-              style={{
-                opacity: isInView ? 1 : 0,
-                transform: isInView ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
-              }}
-            >
-              Deep domain expertise across <strong className="text-slate-900">8+ industries</strong> — solutions tailored to your sector
-            </p>
-          </div>
-          <a
-            href="#"
-            className="hidden lg:inline-flex btn-primary text-sm py-2.5 px-5"
+      <div className="relative z-10 w-full px-4 md:px-10 lg:px-16 xl:px-20">
+        {/* Header */}
+        <div className="mb-4">
+          <div
+            className="section-label mb-2"
             style={{
               opacity: isInView ? 1 : 0,
-              transform: isInView ? 'translateX(0)' : 'translateX(30px)',
-              transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s',
+              transform: isInView ? 'translateY(0)' : 'translateY(-20px)',
+              transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
           >
-            All Industries <ArrowUpRight className="w-4 h-4" />
-          </a>
+            <TrendingUp className="w-3.5 h-3.5 text-blue-600" />
+            Industries We Serve
+          </div>
+          <div className="flex items-end justify-between gap-3">
+            <div>
+              <h2
+                data-aos="fade-right"
+                data-aos-delay="100"
+                className="heading-section"
+                style={{
+                  opacity: isInView ? 1 : 0,
+                  transform: isInView ? 'translateY(0)' : 'translateY(30px)',
+                  transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
+                  marginBottom: '8px',
+                }}
+              >
+                Built for <span className="text-gradient">Every Industry</span>
+              </h2>
+              <p
+                className="text-body max-w-2xl"
+                style={{
+                  opacity: isInView ? 1 : 0,
+                  transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
+                }}
+              >
+                Deep domain expertise across <strong className="text-slate-900">8+ industries</strong>
+              </p>
+            </div>
+            <a
+              href="#"
+              className="btn-primary text-xs py-2 px-3 shrink-0 whitespace-nowrap"
+              style={{
+                opacity: isInView ? 1 : 0,
+                transform: isInView ? 'translateX(0)' : 'translateX(30px)',
+                transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s',
+              }}
+            >
+              All Industries <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
 
         <div
@@ -282,7 +290,7 @@ const IndustriesSection = () => {
                     transition: `all 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${0.5 + i * 0.1}s`,
                   }}
                 >
-                  <div className="relative w-full shrink-0 aspect-[16/10] overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50">
+                  <div className="relative w-full shrink-0 aspect-[16/9] md:aspect-[16/10] overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50">
                     <img
                       src={ind.img}
                       alt={ind.title}

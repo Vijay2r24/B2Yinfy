@@ -91,8 +91,8 @@ const ProductsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="h-screen w-full flex flex-col relative overflow-hidden"
-      style={{ paddingTop: "60px", background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)" }}
+      className="min-h-screen w-full flex flex-col relative overflow-hidden"
+      style={{ paddingTop: "80px", paddingBottom: "40px", background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)" }}
     >
       <div
         className="absolute inset-0 pointer-events-none"
@@ -128,7 +128,7 @@ const ProductsSection = () => {
         />
       </div>
 
-      <div className="relative z-10 w-full flex-1 flex flex-col min-h-0 px-6 md:px-10 lg:px-16 xl:px-20 py-5 md:py-6">
+      <div className="relative z-10 w-full flex-1 flex flex-col min-h-0 px-4 md:px-10 lg:px-16 xl:px-20 py-4 md:py-6">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3 mb-4 shrink-0">
           <div>
             <div
@@ -182,7 +182,7 @@ const ProductsSection = () => {
           </a>
         </div>
 
-        <div className="flex-1 min-h-0 grid md:grid-cols-3 gap-3 md:gap-4 items-stretch">
+        <div className="flex-1 min-h-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 items-stretch">
         {pillars.map((p, idx) => {
           const Icon = p.Icon;
           return (

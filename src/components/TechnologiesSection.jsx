@@ -100,8 +100,8 @@ const TechnologiesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="h-screen w-full relative overflow-hidden flex items-center"
-      style={{ paddingTop: "60px", background: "linear-gradient(180deg,#ffffff 0%,#f8fafc 100%)" }}
+      className="min-h-screen w-full relative overflow-hidden"
+      style={{ paddingTop: "80px", paddingBottom: "40px", background: "linear-gradient(180deg,#ffffff 0%,#f8fafc 100%)" }}
     >
       {/* Dot grid */}
       <div className="absolute inset-0 pointer-events-none"
@@ -115,8 +115,8 @@ const TechnologiesSection = () => {
             animation: "pulse-slow 8s ease-in-out infinite" }} />
       </div>
 
-      <div className="relative z-10 w-full px-6 md:px-10 lg:px-16 xl:px-20">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+      <div className="relative z-10 w-full px-4 md:px-10 lg:px-16 xl:px-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-start">
 
           {/* ── LEFT: Text content ── */}
           <div>
@@ -165,7 +165,7 @@ const TechnologiesSection = () => {
             </p>
 
             {/* Feature list */}
-            <div className="space-y-3">
+            <div className="space-y-2.5 mb-6 md:mb-0">
               {features.map((f, i) => (
                 <div
                   key={f.title}
@@ -195,7 +195,7 @@ const TechnologiesSection = () => {
 
           {/* ── RIGHT: Logo grid ── */}
           <div
-            className="grid grid-cols-4 gap-1.5"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2"
             style={{
               opacity: isInView ? 1 : 0,
               transition: "opacity 0.4s ease 0.2s",
